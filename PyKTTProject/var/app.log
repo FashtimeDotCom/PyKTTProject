@@ -1,0 +1,12 @@
+[14-07-26 13:36:21][MainThread][serv.py:117] INFO: starting..., listen [8888], configurated by (/home/rowland/myGit/iceworld/multithreadtornado/etc/includes_dev.json)
+[14-07-26 13:38:10][MainThread][serv.py:117] INFO: starting..., listen [8888], configurated by (/home/rowland/myGit/iceworld/multithreadtornado/etc/includes_dev.json)
+[14-07-26 13:38:24][MainThread][route.py:96] WARNING: not found!uri=hello/me/world,method=1,parameters=||
+[14-07-26 13:39:00][MainThread][serv.py:117] INFO: starting..., listen [8888], configurated by (/home/rowland/myGit/iceworld/multithreadtornado/etc/includes_dev.json)
+[14-07-26 13:39:02][MainThread][route.py:96] WARNING: not found!uri=hello/me/world,method=1,parameters=||
+[14-07-26 13:39:05][MainThread][route.py:96] WARNING: not found!uri=me/world,method=1,parameters=||
+[14-07-26 13:39:28][MainThread][route.py:92] INFO: hello/billy {}
+[14-07-26 13:39:54][MainThread][route.py:92] INFO: hello/billy {}
+[14-07-26 13:39:54][MainThread][route.py:92] INFO: hello/billy {}
+[14-07-26 13:39:54][MainThread][route.py:92] INFO: hello/billy {}
+[14-07-26 13:40:58][MainThread][serv.py:117] INFO: starting..., listen [8888], configurated by (/home/rowland/myGit/iceworld/multithreadtornado/etc/includes_dev.json)
+[14-07-26 13:41:12][MainThread][route.py:96] WARNING: not found!uri=me/hello,method=1,parameters=||
