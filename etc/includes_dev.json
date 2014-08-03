@@ -1,9 +1,0 @@
-{
-    "$includes": [
-        "app_conf.json"
-    ],
-    "logging": {
-        "config_file": "/home/rowland/ktgit/PyKTTProject/etc/dev_log.conf",
-        "default_logger": "simple"
-    }
-}

@@ -1,9 +1,0 @@
-{
-    "$includes": [
-        "webapp_dev.json"
-    ],
-    "logging": {
-        "config_file": "dev_log.conf",
-        "default_logger": "simple"
-    }
-}
