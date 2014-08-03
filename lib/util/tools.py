@@ -1,4 +1,4 @@
-#coding=utf-8
+# coding=utf-8
 # author Rowland
 # edit 2014-03-19 14:16:46
 
@@ -28,7 +28,7 @@ class Log():
 class HttpRequest:
     def __init__(self, host, **kwargs):
         if "timeout" not in kwargs:
-            kwargs.update({"timeout":8})
+            kwargs.update({"timeout": 8})
         self.con = httplib.HTTPConnection(host, **kwargs)
 
     def __enter__(self):
@@ -42,7 +42,7 @@ class HttpRequest:
 
     @staticmethod
     def url_encode(str):
-        s = urllib.urlencode({"x":str})
+        s = urllib.urlencode({"x": str})
         return s[len("x="):]
 
     def post(self, path, data):
@@ -67,8 +67,8 @@ class HttpRequest:
 def test():
     with HttpRequest(host="www.500.com") as conn:
         conn.post()
-    #httpRequest = HttpRequest(host="www.500.com")
-    #resp = httpRequest.post(path="/static/info/index/zxdj/zxdj.xml", data=None)
-    #print resp.read()
+        #httpRequest = HttpRequest(host="www.500.com")
+        #resp = httpRequest.post(path="/static/info/index/zxdj/zxdj.xml", data=None)
+        #print resp.read()
 
 
