@@ -1,0 +1,242 @@
+[14-08-03 14:30:34][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 14:31:03][MainThread][route.py:92] INFO: hello/billy {}
+[14-08-03 14:31:11][MainThread][route.py:92] INFO: hello/billy {}
+[14-08-03 14:32:28][MainThread][route.py:92] INFO: hello/billy {}
+[14-08-03 14:34:30][MainThread][route.py:92] INFO: hello/billy {}
+[14-08-03 14:36:35][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 14:36:36][MainThread][route.py:92] INFO: hello/billy {}
+[14-08-03 14:36:36][Thread-6][route.py:23] ERROR: error
+Traceback (most recent call last):
+  File "/home/rowland/ktgit/PyKTTProject/lib/util/route.py", line 21, in _call_wrap
+    ret = call(*params)
+  File "/home/rowland/ktgit/PyKTTProject/biz/hello.py", line 13, in test
+    return "Hi," + who + r.get('foo')
+  File "build/bdist.linux-x86_64/egg/redis/client.py", line 616, in get
+    return self.execute_command('GET', name)
+  File "build/bdist.linux-x86_64/egg/redis/client.py", line 391, in execute_command
+    connection = pool.get_connection(command_name, **options)
+  File "build/bdist.linux-x86_64/egg/redis/connection.py", line 405, in get_connection
+    connection = self.make_connection()
+  File "build/bdist.linux-x86_64/egg/redis/connection.py", line 414, in make_connection
+    return self.connection_class(**self.connection_kwargs)
+TypeError: __init__() got an unexpected keyword argument 'standalone'
+[14-08-03 14:41:23][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 14:41:26][MainThread][route.py:92] INFO: hello/billy {}
+[14-08-03 14:44:56][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 14:44:59][MainThread][route.py:92] INFO: hello/billy {}
+[14-08-03 14:44:59][MainThread][route.py:92] INFO: hello/billy {}
+[14-08-03 14:45:00][MainThread][route.py:92] INFO: hello/billy {}
+[14-08-03 18:33:34][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 18:34:02][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:34:02][Thread-6][route.py:23] ERROR: error
+Traceback (most recent call last):
+  File "/home/rowland/ktgit/PyKTTProject/lib/util/route.py", line 21, in _call_wrap
+    ret = call(*params)
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 10, in offer_resources
+    return self.get_resource("http://upload.cnforex.com/images/2014/3/10/140310140521521.jpg.cnforex")
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 13, in get_resource
+    session = Session('master')
+  File "/home/rowland/ktgit/PyKTTProject/lib/db_util.py", line 42, in __init__
+    self.con = get_mysql(dbid)
+  File "/home/rowland/ktgit/PyKTTProject/lib/db_util.py", line 23, in get_mysql
+    conf = confs.mysql[dbid]
+KeyError: 'master'
+[14-08-03 18:34:23][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 18:34:24][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:34:25][Thread-6][route.py:23] ERROR: error
+Traceback (most recent call last):
+  File "/home/rowland/ktgit/PyKTTProject/lib/util/route.py", line 21, in _call_wrap
+    ret = call(*params)
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 10, in offer_resources
+    return self.get_resource("http://upload.cnforex.com/images/2014/3/10/140310140521521.jpg.cnforex")
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 14, in get_resource
+    resources = session.select(resModel.Resource, id=id)
+TypeError: select() got an unexpected keyword argument 'id'
+[14-08-03 18:35:11][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:35:11][Thread-6][route.py:23] ERROR: error
+Traceback (most recent call last):
+  File "/home/rowland/ktgit/PyKTTProject/lib/util/route.py", line 21, in _call_wrap
+    ret = call(*params)
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 10, in offer_resources
+    return self.get_resource("http://upload.cnforex.com/images/2014/3/10/140310140521521.jpg.cnforex")
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 14, in get_resource
+    resources = session.select(resModel.Resource, ID=id)
+TypeError: select() got an unexpected keyword argument 'id'
+[14-08-03 18:35:26][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 18:35:31][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:35:31][Thread-6][route.py:23] ERROR: error
+Traceback (most recent call last):
+  File "/home/rowland/ktgit/PyKTTProject/lib/util/route.py", line 21, in _call_wrap
+    ret = call(*params)
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 10, in offer_resources
+    return self.get_resource("http://upload.cnforex.com/images/2014/3/10/140310140521521.jpg.cnforex")
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 14, in get_resource
+    resources = session.select(resModel.Resource, ID=id)
+TypeError: select() got an unexpected keyword argument 'ID'
+[14-08-03 18:36:07][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 18:36:07][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:36:08][Thread-6][route.py:23] ERROR: error
+Traceback (most recent call last):
+  File "/home/rowland/ktgit/PyKTTProject/lib/util/route.py", line 21, in _call_wrap
+    ret = call(*params)
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 10, in offer_resources
+    return self.get_resource("http://upload.cnforex.com/images/2014/3/10/140310140521521.jpg.cnforex")
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 14, in get_resource
+    resources = session.select(resModel.Resource, {"ID":id})
+  File "/home/rowland/ktgit/PyKTTProject/lib/db_util.py", line 47, in select
+    sql %= (E.params, E.table)
+AttributeError: 'function' object has no attribute 'params'
+[14-08-03 18:37:08][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 18:37:14][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:43:08][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 18:43:11][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:43:11][Thread-6][route.py:23] ERROR: error
+Traceback (most recent call last):
+  File "/home/rowland/ktgit/PyKTTProject/lib/util/route.py", line 21, in _call_wrap
+    ret = call(*params)
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 10, in offer_resources
+    return self.get_resource("http://upload.cnforex.com/images/2014/3/10/140310140521521.jpg.cnforex")
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 14, in get_resource
+    resources = session.select(resModel.Resource, {"ID":id})
+  File "/home/rowland/ktgit/PyKTTProject/lib/db_util.py", line 66, in select
+    raise e
+TypeError: not all arguments converted during string formatting
+[14-08-03 18:43:34][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:45:06][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 18:45:08][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:45:53][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 18:45:54][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:45:54][Thread-6][route.py:23] ERROR: error
+Traceback (most recent call last):
+  File "/home/rowland/ktgit/PyKTTProject/lib/util/route.py", line 21, in _call_wrap
+    ret = call(*params)
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 10, in offer_resources
+    return self.get_resource("http://upload.cnforex.com/images/2014/3/10/140310140521521.jpg.cnforex")
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 14, in get_resource
+    resources = session.select(resModel.Resource, {"ID":id})
+  File "/home/rowland/ktgit/PyKTTProject/lib/db_util.py", line 66, in select
+    raise e
+ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1")
+[14-08-03 18:46:07][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:46:24][Thread-6][route.py:23] ERROR: error
+Traceback (most recent call last):
+  File "/home/rowland/ktgit/PyKTTProject/lib/util/route.py", line 21, in _call_wrap
+    ret = call(*params)
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 10, in offer_resources
+    return self.get_resource("http://upload.cnforex.com/images/2014/3/10/140310140521521.jpg.cnforex")
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 14, in get_resource
+    resources = session.select(resModel.Resource, {"ID":id})
+  File "/home/rowland/ktgit/PyKTTProject/lib/db_util.py", line 66, in select
+    raise e
+ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1")
+[14-08-03 18:46:28][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 18:46:29][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:46:49][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:48:32][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 18:48:35][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:48:45][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:53:31][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 18:53:33][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:53:38][Thread-6][route.py:23] ERROR: error
+Traceback (most recent call last):
+  File "/home/rowland/ktgit/PyKTTProject/lib/util/route.py", line 21, in _call_wrap
+    ret = call(*params)
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 10, in offer_resources
+    resource_entity = self.get_resource("http://upload.cnforex.com/images/2014/3/10/140310140521521.jpg.cnforex")[0]
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[14-08-03 18:54:04][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:54:47][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 18:54:48][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 18:55:09][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 18:55:09][MainThread][route.py:92] INFO: me/what {}
+[14-08-03 19:47:20][MainThread][serv.py:108] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 19:56:41][MainThread][serv.py:109] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 19:58:05][MainThread][serv.py:110] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 19:58:38][Thread-6][route.py:25] INFO: request: /me/what {}
+[14-08-03 20:03:52][MainThread][serv.py:148] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 20:04:07][Thread-6][route.py:25] INFO: request: /me/what {}
+[14-08-03 20:04:41][MainThread][serv.py:148] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 20:04:45][Thread-6][route.py:25] INFO: request: /me/what {}
+[14-08-03 20:04:45][Thread-6][route.py:28] ERROR: system error: None
+Traceback (most recent call last):
+  File "/home/rowland/ktgit/PyKTTProject/lib/util/route.py", line 26, in _call_wrap
+    ret = call(*params)
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 15, in offer_resources
+    "img_url": resource_entity.IMAGEURL
+  File "/home/rowland/ktgit/PyKTTProject/bin/serv.py", line 71, in ok
+    }, ensure_ascii=False, indent="2")
+TypeError: 'indent' is an invalid keyword argument for this function
+[14-08-03 20:05:57][MainThread][serv.py:148] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 20:06:00][Thread-6][route.py:25] INFO: request: /me/what {}
+[14-08-03 20:06:07][Thread-6][route.py:25] INFO: request: /me/what {}
+[14-08-03 20:07:20][Thread-7][route.py:25] INFO: request: /me/what {}
+[14-08-03 20:07:41][Thread-6][route.py:25] INFO: request: /me/what {}
+[14-08-03 20:08:31][Thread-7][route.py:25] INFO: request: /me/what {}
+[14-08-03 20:08:56][MainThread][serv.py:142] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 20:09:12][Thread-6][route.py:25] INFO: request: /me/what {}
+[14-08-03 20:10:53][MainThread][serv.py:142] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 20:11:01][Thread-6][route.py:25] INFO: request: /me/what {}
+[14-08-03 20:11:02][Thread-6][route.py:28] ERROR: system error: None
+Traceback (most recent call last):
+  File "/home/rowland/ktgit/PyKTTProject/lib/util/route.py", line 26, in _call_wrap
+    ret = call(*params)
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 10, in offer_resources
+    resource_entity = self.get_resource("http://upload.cnforex.com/images/2014/3/10/140310140521521.jpg.cnforex")
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 19, in get_resource
+    session = Session('master')
+  File "/home/rowland/ktgit/PyKTTProject/lib/db_util.py", line 42, in __init__
+    self.con = get_mysql(dbid)
+  File "/home/rowland/ktgit/PyKTTProject/lib/db_util.py", line 29, in get_mysql
+    return pool.connection()
+  File "/usr/lib/python2.7/site-packages/DBUtils-1.1-py2.7.egg/DBUtils/PooledDB.py", line 331, in connection
+    con = self.steady_connection()
+  File "/usr/lib/python2.7/site-packages/DBUtils-1.1-py2.7.egg/DBUtils/PooledDB.py", line 279, in steady_connection
+    *self._args, **self._kwargs)
+  File "/usr/lib/python2.7/site-packages/DBUtils-1.1-py2.7.egg/DBUtils/SteadyDB.py", line 134, in connect
+    failures, ping, closeable, *args, **kwargs)
+  File "/usr/lib/python2.7/site-packages/DBUtils-1.1-py2.7.egg/DBUtils/SteadyDB.py", line 186, in __init__
+    self._store(self._create())
+  File "/usr/lib/python2.7/site-packages/DBUtils-1.1-py2.7.egg/DBUtils/SteadyDB.py", line 190, in _create
+    con = self._creator(*self._args, **self._kwargs)
+  File "build/bdist.linux-x86_64/egg/MySQLdb/__init__.py", line 81, in Connect
+    return Connection(*args, **kwargs)
+  File "build/bdist.linux-x86_64/egg/MySQLdb/connections.py", line 221, in __init__
+    self.set_character_set(charset)
+  File "build/bdist.linux-x86_64/egg/MySQLdb/connections.py", line 312, in set_character_set
+    super(Connection, self).set_character_set(charset)
+OperationalError: (2019, "Can't initialize character set utf-8 (path: /usr/share/mariadb/charsets/)")
+[14-08-03 20:12:12][MainThread][serv.py:142] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 20:12:35][Thread-6][route.py:25] INFO: request: /me/what {}
+[14-08-03 20:14:14][MainThread][serv.py:142] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 20:14:24][Thread-6][route.py:25] INFO: request: /me/what {}
+[14-08-03 20:14:38][Thread-6][route.py:25] INFO: request: /me/what {}
+[14-08-03 20:14:49][Thread-7][route.py:25] INFO: request: /me/what {}
+[14-08-03 20:15:38][MainThread][serv.py:142] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 20:15:42][Thread-6][route.py:25] INFO: request: /me/what {}
+[14-08-03 20:23:44][MainThread][serv.py:142] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 20:23:46][Thread-6][route.py:25] INFO: request: /me/what {}
+[14-08-03 20:23:46][Thread-6][route.py:28] ERROR: system error: None
+Traceback (most recent call last):
+  File "/home/rowland/ktgit/PyKTTProject/lib/util/route.py", line 26, in _call_wrap
+    ret = call(*params)
+  File "/home/rowland/ktgit/PyKTTProject/biz/demo.py", line 13, in offer_resources
+    return req.ok(resource_entity)
+  File "/home/rowland/ktgit/PyKTTProject/bin/serv.py", line 71, in ok
+    }, ensure_ascii=False, indent=2)
+  File "/usr/lib64/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/usr/lib64/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/usr/lib64/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/usr/lib64/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/usr/lib64/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/usr/lib64/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/usr/lib64/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: datetime.datetime(2014, 3, 10, 0, 0) is not JSON serializable
+[14-08-03 20:27:30][MainThread][serv.py:142] INFO: starting..., listen [8888], configurated by (/home/rowland/ktgit/PyKTTProject/etc/includes_dev.json)
+[14-08-03 20:27:30][Thread-6][route.py:25] INFO: request: /me/what {}
