@@ -3,6 +3,11 @@ import datetime
 from util.route import Router
 from entity import resModel
 from db_util import Session
+from util.tools import Log
+
+logger = Log().getLog()
+
+
 
 class KtResourceAction(object):
     """映射http的方法类似于action层，不要写业务代码！"""
@@ -15,5 +20,6 @@ class KtResourceAction(object):
     """在单独的业务方法里面写"""
     def get_resource(self, id):
         session = Session('master')
+        logger.info('begin tx')
         resources = session.select(resModel.Resource, {"ID":id})
         return resources

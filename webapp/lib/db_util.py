@@ -40,6 +40,17 @@ def orm(**conf):
 class Session(object):
     def __init__(self, dbid):
         self.con = get_mysql(dbid)
+        self.close = self.con.close
+
+    def __enter__(self, dbid):
+        return Session(dbid)
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.con.close()
+
+    def __del__(self):
+        self.con.close()
+
 
     def select(self, E, d):
         ret = []
@@ -67,8 +78,8 @@ class Session(object):
                 return ret
         except Exception, e:
             raise e
-        finally:
-            if self.con: self.con.close()
+
+
 
 
 
