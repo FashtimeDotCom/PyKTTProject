@@ -20,7 +20,7 @@ class  DataCenterResourceAction(object):
 
     def tradeactivity_resource(self):
         session = Session('master')
-        logger.info('数据中心交易情绪查询查询！')
+        logger.info('数据中心交易情绪查询查询...！')
         resources = session.select(resModel.TradeActivity,{})
         return resources
 
