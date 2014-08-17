@@ -12,6 +12,9 @@ class  DataCenterResourceAction(object):
     @Router.route(url = r"datacenter/tradeactivity", method = Router._GET|Router._POST)
     def tradeactivity_action(self,req):
         resource_entity = self.tradeactivity_resource()
+        for current_dict in  resource_entity:
+            current_dict['STARTDATE'] = current_dict['STARTDATE'].strftime('%Y-%m-%d')
+            current_dict['ENDDATE'] = current_dict['ENDDATE'].strftime('%Y-%m-%d')
         return req.ok(resource_entity)
 
 
