@@ -6,6 +6,6 @@ class Resource(dict):
     pass
 
 
-@orm(table="datacenter_tradeactivity",params="STARTDATE,ENDDATE,CURRENTVALUE")
+@orm(table="datacenter_tradeactivity", params="STARTDATE , ENDDATE , CURRENTVALUE")
 class TradeActivity(dict):
     pass

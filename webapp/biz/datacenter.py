@@ -14,11 +14,11 @@ class  DataCenterResourceAction(object):
         resource_entity = self.tradeactivity_resource()
         return req.ok(resource_entity)
 
-     """数据中心交易情绪查询"""
+
     def tradeactivity_resource(self):
         session = Session('master')
         logger.info('数据中心交易情绪查询查询！')
-        resources = session.select(resModel.TradeActivity)
+        resources = session.select(resModel.TradeActivity,{})
         return resources
 
 
