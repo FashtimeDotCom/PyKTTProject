@@ -6,7 +6,6 @@ import os, inspect, sys, re, time, random
 
 import tornado.ioloop, tornado.web
 from concurrent import futures
-import ujson
 
 import util.tools
 logger = util.tools.Log().getLog()
