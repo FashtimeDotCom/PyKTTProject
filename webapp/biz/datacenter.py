@@ -12,9 +12,14 @@ class  DataCenterResourceAction(object):
     @Router.route(url = r"datacenter/tradeactivity", method = Router._GET|Router._POST)
     def tradeactivity_action(self,req):
         resource_entity = self.tradeactivity_resource()
+        current_date = []
+        current_value = []
         for current_dict in  resource_entity:
             current_dict['STARTDATE'] = current_dict['STARTDATE'].strftime('%Y-%m-%d')
             current_dict['ENDDATE'] = current_dict['ENDDATE'].strftime('%Y-%m-%d')
+            current_date.append(current_dict['STARTDATE']+'至'+current_dict['ENDDATE'])
+            current_value.append(current_dict['CURRENTVALUE'])
+        resource_entity = {'currentdate':current_date,'currentvalue':current_value}
         return req.ok(resource_entity)
 
     #数据中心交易情绪查询操作方法#
@@ -29,8 +34,13 @@ class  DataCenterResourceAction(object):
     @Router.route(url = r"datacenter/marketsentiment", method = Router._GET|Router._POST)
     def marketsentiment_action(self,req):
          current_resource = self.marketsentiment_resource()
+         current_date = []
+         current_value= []
          for current_dict in current_resource:
              current_dict['CURRENTDATE'] = current_dict['CURRENTDATE'].strftime('%Y-%m-%d')
+             current_date.append(current_dict['CURRENTDATE'])
+             current_value.append(current_dict['CURRENTVALUE'])
+         current_resource = {'currentdate':current_date,'currentvalue':current_value}
          return req.ok(current_resource)
 
 
