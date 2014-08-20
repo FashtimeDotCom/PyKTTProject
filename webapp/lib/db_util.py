@@ -51,6 +51,7 @@ class Session(object):
     def __del__(self):
         self.con.close()
 
+
     def select_result(self,sql):
         conn = self.con
         cursor = conn.cursor(cursorclass = MySQLdb.cursors.DictCursor)
@@ -63,6 +64,7 @@ class Session(object):
             conn.close()
             cursor.close()
         return result
+
 
     def select(self, E, d):
         ret = []
