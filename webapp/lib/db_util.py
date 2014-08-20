@@ -3,11 +3,11 @@
 import redis, MySQLdb
 from DBUtils import PooledDB
 from c import confs
-
+from util.tools import Log
 
 redis_pools = {}
 mysql_pool = {}
-
+logger = Log().getLog()
 
 def get_redis(dbid):
     conf = confs.redis[dbid]
@@ -51,6 +51,18 @@ class Session(object):
     def __del__(self):
         self.con.close()
 
+    def select_result(self,sql):
+        conn = self.con
+        cursor = conn.cursor(cursorclass = MySQLdb.cursors.DictCursor)
+        try :
+            cursor.execute(sql)
+            result = cursor.fetchall()
+        except conn.Error,e:
+            logger.info("Mysql Error %d: %s" % (e.args[0], e.args[1]))
+        finally:
+            conn.close()
+            cursor.close()
+        return result
 
     def select(self, E, d):
         ret = []
