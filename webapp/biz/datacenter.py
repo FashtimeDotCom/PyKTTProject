@@ -34,16 +34,13 @@ class  DataCenterResourceAction(object):
     @Router.route(url = r"datacenter/marketsentiment", method = Router._GET|Router._POST)
     def marketsentiment_action(self,req):
          current_resource = self.marketsentiment_resource()
-         current_date = []
-         current_value= []
+         currentdata = []
          i = 1
          for current_dict in current_resource:
-             logger.info(current_dict)
-
+             currentdata.append(current_dict)
              if(i == 15):break;
              i = i+1
-         current_resource = {'currentdate':current_date,'currentvalue':current_value}
-         return req.ok(current_resource)
+         return req.ok(currentdata)
 
 
     #数据中心市场交易活跃度查询方法#
