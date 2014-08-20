@@ -34,11 +34,15 @@ class  DataCenterResourceAction(object):
     @Router.route(url = r"datacenter/marketsentiment", method = Router._GET|Router._POST)
     def marketsentiment_action(self,req):
          current_resource = self.marketsentiment_resource()
-         currentdata = []
+         currentdate = []
+         currentvalue = []
          for current_dict in current_resource:
              for (key,value) in current_dict.iteritems():
-                 print str(key)+'...'+str(value)
-                 print '-------------'
+                 if('CURRENTDATE'==key):
+                     currentdate.append(value)
+                 elif('CURRENTVALUE'==key):
+                     currentvalue.append(value)
+         currentdata ={'currentdate':currentdate,'currentvalue':currentvalue}
          return req.ok(currentdata)
 
 
