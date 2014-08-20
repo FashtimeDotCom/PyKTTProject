@@ -35,11 +35,10 @@ class  DataCenterResourceAction(object):
     def marketsentiment_action(self,req):
          current_resource = self.marketsentiment_resource()
          currentdata = []
-         i = 1
          for current_dict in current_resource:
-             currentdata.append(current_dict)
-             if(i == 15):break;
-             i = i+1
+             for (key,value) in current_dict.iteritems():
+                 print str(key)+'...'+str(value)
+                 print '-------------'
          return req.ok(currentdata)
 
 
