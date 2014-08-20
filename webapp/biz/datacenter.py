@@ -36,10 +36,12 @@ class  DataCenterResourceAction(object):
          current_resource = self.marketsentiment_resource()
          current_date = []
          current_value= []
+         i = 1
          for current_dict in current_resource:
-             current_dict['CURRENTDATE'] = current_dict['CURRENTDATE'].strftime('%Y-%m-%d')
-             current_date.append(current_dict['CURRENTDATE'])
-             current_value.append(current_dict['CURRENTVALUE'])
+             logger.info(current_dict)
+
+             if(i == 15):break;
+             i = i+1
          current_resource = {'currentdate':current_date,'currentvalue':current_value}
          return req.ok(current_resource)
 
@@ -48,8 +50,14 @@ class  DataCenterResourceAction(object):
     def marketsentiment_resource(self):
         session = Session('master')
         logger.info('数据中心市场交易活跃度查询...！')
-        resources = session.select(resModel.MarketSentiment,{})
-        return resources
+        sql = "SELECT SUBSTRING(DATACENTER.CURRENTDATE,1,10) AS CURRENTDATE," \
+              " DATACENTER.CURRENTVALUE AS CURRENTVALUE" \
+              " FROM " \
+              " DATACENTER_MARKETSENTIMENT DATACENTER" \
+              " WHERE 1 = 1 " \
+              " ORDER BY DATACENTER.CURRENTDATE DESC LIMIT 0,15"
+        result = session.select_result(sql);
+        return result
 
 
 
