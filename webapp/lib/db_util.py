@@ -51,13 +51,27 @@ class Session(object):
     def __del__(self):
         self.con.close()
 
-
+    #通用Mysql查询#
     def select_result(self,sql):
         conn = self.con
         cursor = conn.cursor(cursorclass = MySQLdb.cursors.DictCursor)
-        try :
+        try:
             cursor.execute(sql)
             result = cursor.fetchall()
+        except conn.Error,e:
+            logger.info("Mysql Error %d: %s" % (e.args[0], e.args[1]))
+        finally:
+            conn.close()
+            cursor.close()
+        return result
+
+    #通用查询单一结果#
+    def select_resultone(self,sql):
+        conn = self.con
+        cursor = conn.cursor(cursorclass = MySQLdb.cursors.DictCursor)
+        try:
+            cursor.execute(sql)
+            result = cursor.fetchone()
         except conn.Error,e:
             logger.info("Mysql Error %d: %s" % (e.args[0], e.args[1]))
         finally:
