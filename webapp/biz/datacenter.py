@@ -97,15 +97,7 @@ class  DataCenterResourceAction(object):
     def stockfuture_action(self,req):
         current_bull_resource = self.stockfuture_resource('BULL')
         current_bear_resource = self.stockfuture_resource('BEAR')
-        beartotalvalue = 0
-        bulltotalvalue = 0
-        for current_dict in current_bull_resource:
-            for (key,value) in current_dict.iteritems():
-                if('TOTALVALUE'==key):bulltotalvalue = value
-        for current_dict in current_bear_resource:
-            for (key,value) in current_dict.iteritems():
-                if('TOTALVALUE'==key):beartotalvalue=value
-        currentdata ={'bear':beartotalvalue,'bull':bulltotalvalue}
+        currentdata ={'bear':current_bear_resource['TOTALVALUE'],'bull':current_bull_resource['TOTALVALUE']}
         return req.ok(currentdata)
 
 
@@ -117,8 +109,7 @@ class  DataCenterResourceAction(object):
         sql = "SELECT SUM(TOTALVALUE) AS TOTALVALUE " \
               "FROM DATACENTER_STOCKFUTURE_RESOURCE_TABLE DATACENTER " \
               "WHERE 1=1 AND DATACENTER.DATAFLAG ='%s'"%dataflag
-        print(sql)
-        result = session.select_result(sql)
+        result = session.select_resultone(sql)
         return result
 
 
