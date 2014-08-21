@@ -91,19 +91,29 @@ class  DataCenterResourceAction(object):
         result = session.select_result(sql)
         return result
 
+
     #数据中心期指期货多空双方持仓统计
     @Router.route(url = r"datacenter/stockfuture", method = Router._GET|Router._POST)
     def stockfuture_action(self,req):
-        current_resource = self.plateconcept_resource()
+        current_bull_resource = self.stockfuture_resource('BULL')
+        current_bear_resource = self.stockfuture_resource('BEAR')
+        for current_dict in current_bull_resource:
+            for (key,value) in current_dict.iteritems():
+                print key+':'+value
 
+        currentdata ={'bear':current_bear_resource['TOTALVALUE'],'bull':current_bull_resource['TOTALVALUE']}
+        return req.ok(currentdata)
 
 
 
     #数据中心期指期货多空双方持仓查询#
-    def stockfuture_resource(self):
+    def stockfuture_resource(self,dataflag):
         session = Session('master')
         logger.info('数据中心期指期货多空双方持仓查询...！')
-        sql = ""
+        sql = "SELECT SUM(TOTALVALUE) AS TOTALVALUE " \
+              "FROM DATACENTER_STOCKFUTURE_RESOURCE_TABLE DATACENTER " \
+              "WHERE 1=1 AND DATACENTER.DATAFLAG ='%s'"%dataflag
+        print(sql)
         result = session.select_result(sql)
         return result
 
