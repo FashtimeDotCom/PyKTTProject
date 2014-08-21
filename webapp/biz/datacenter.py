@@ -91,12 +91,21 @@ class  DataCenterResourceAction(object):
         result = session.select_result(sql)
         return result
 
-    #
+    #数据中心期指期货多空双方持仓统计
+    @Router.route(url = r"datacenter/stockfuture", method = Router._GET|Router._POST)
+    def stockfuture_action(self,req):
+        current_resource = self.plateconcept_resource()
 
 
 
 
-
+    #数据中心期指期货多空双方持仓查询#
+    def stockfuture_resource(self):
+        session = Session('master')
+        logger.info('数据中心期指期货多空双方持仓查询...！')
+        sql = ""
+        result = session.select_result(sql)
+        return result
 
 
 
