@@ -61,6 +61,37 @@ class  DataCenterResourceAction(object):
 
 
 
+    #获取数据中心板块涨跌幅度指标接口#
+    @Router.route(url = r"datacenter/plateconcept", method = Router._GET|Router._POST)
+    def plateconcept_action(self,req):
+        current_resource = self.plateconcept_resource()
+        current_platename=[]
+        current_risedecline = []
+        for current_dict in current_resource:
+             for (key,value) in current_dict.iteritems():
+                 if('PLATENAME'==key):
+                     current_platename.append(value)
+                 elif('RISEDECLINE'==key):
+                     current_risedecline.append(value*100)
+        currentdata ={'platename':current_platename,'risedecline':current_risedecline}
+        return req.ok(currentdata)
+
+
+    #数据中心热门板块查询#
+    def plateconcept_resource(self):
+        session = Session('master')
+        logger.info('数据中心热门板块查询...！')
+        sql = " SELECT DATACENTER.PLATENAME AS PLATENAME," \
+              " DATACENTER.RISEDECLINE AS RISEDECLINE," \
+              " DATACENTER.CURRENTMONEY AS CURRENTMONEY" \
+              " FROM " \
+              " DATACENTER_PLATECONCEPT_RESOURCE_TABLE DATACENTER " \
+              " WHERE 1 = 1 " \
+              " ORDER BY DATACENTER.RISEDECLINE DESC,DATACENTER.CURRENTMONEY DESC LIMIT 0,15"
+        result = session.select_result(sql)
+        return result
+
+    #
 
 
 
