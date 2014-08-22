@@ -112,8 +112,9 @@ class  DataCenterResourceAction(object):
         result = session.select_resultone(sql)
         return result
       
+      
     #国家黄金外汇储备经济指标#
-    @Router.route(url = r"datacenter/stockfuture", method = Router._GET|Router._POST) 
+    @Router.route(url = r"datacenter/forexgold", method = Router._GET|Router._POST) 
     def forexgold_action(self,req):
         current_resource = self.forexgold_resource()
         #当前时间#
@@ -123,7 +124,7 @@ class  DataCenterResourceAction(object):
         #当前时间黄金储备量#
         golddata = []
         for current_dict in current_resource:
-            for (k,v) in current_dict.iteritems():
+            for (key,value) in current_dict.iteritems():
                 if('CURRENTDATE'==key):
                     currentdate.append(value)
                 elif('FOREXSTORA'==key):
@@ -133,16 +134,41 @@ class  DataCenterResourceAction(object):
         currentdata ={'currentdate':currentdate,'forexdata':forexdata,'golddata':golddata}
         return req.ok(currentdata)
     
+    #国家黄金外汇储备查询#
     def forexgold_resource(self):
         session = Session('master')
-        logger.info('数据中心期指期货多空双方持仓查询...！')
+        logger.info('国家黄金外汇储备查询...！')
         sql = " SELECT  SUBSTRING(DATACENTER.CURRENTDATE,1,10) AS CURRENTDATE," \
               " DATACENTER.FOREXSTORA AS FOREXSTORA, " \
               " DATACENTER.GOLDSTORA AS GOLDSTORA " \
               " FROM " \
               " DATACENTER_GOLDFOREX_RESOURCE_TABLE DATACENTER " \
-              " WHERE  1 = 1 ORDER BY DATACENTER.CURRENTDATE DESC" 
+              " WHERE  1 = 1 ORDER BY DATACENTER.CURRENTDATE DESC LIMIT 0,20" 
         result = session.select_result(sql)
         return result
-
+     
+    #波罗地海航运干货指数#
+    @Router.route(url = r"datacenter/forexgold", method = Router._GET|Router._POST)
+    def bulkcargotrans_action(self,req):
+        current_resource = self.bulkcargotrans_resource()
+        currenttime= []
+        indexvalue = []
+        for current_dict in current_resource:
+            for (key,value) in current_dict.iteritems():
+                if('CURRENTTIME'==key):
+                    currenttime.append(object)
+                
+                    
+        
+    def bulkcargotrans_resource(self):
+        session = Session('master')
+        logger.info('国家黄金外汇储备查询...！')
+        sql = " SELECT SUBSTRING(DATACENTER.CURRENTTIME,1,10) AS CURRENTTIME," \
+              " DATACENTER.INDEXVALUE AS INDEXVALUE " \
+              " FROM  DATACENTER_BULKCARGOTRANS_RESOURCE_TABLE DATACENTER  " \
+              " WHERE 1=1 " \
+              " ORDER BY DATACENTER.CURRENTTIME DESC LIMIT 0,20"
+        result = session.select_result(sql)
+        return result
+     
 
