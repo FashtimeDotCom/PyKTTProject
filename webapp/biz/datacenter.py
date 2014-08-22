@@ -143,7 +143,7 @@ class  DataCenterResourceAction(object):
               " DATACENTER.GOLDSTORA AS GOLDSTORA " \
               " FROM " \
               " DATACENTER_GOLDFOREX_RESOURCE_TABLE DATACENTER " \
-              " WHERE  1 = 1 ORDER BY DATACENTER.CURRENTDATE DESC LIMIT 0,20" 
+              " WHERE  1 = 1 ORDER BY DATACENTER.CURRENTDATE DESC LIMIT 0,25"
         result = session.select_result(sql)
         return result
      
@@ -170,7 +170,7 @@ class  DataCenterResourceAction(object):
               " DATACENTER.INDEXVALUE AS INDEXVALUE " \
               " FROM  DATACENTER_BULKCARGOTRANS_RESOURCE_TABLE DATACENTER  " \
               " WHERE 1=1 " \
-              " ORDER BY DATACENTER.CURRENTTIME DESC LIMIT 0,20"
+              " ORDER BY DATACENTER.CURRENTTIME DESC LIMIT 0,25"
         result = session.select_result(sql)
         return result
      
