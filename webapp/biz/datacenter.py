@@ -8,7 +8,7 @@ logger = Log().getLog()
 
 class  DataCenterResourceAction(object):
 
-    """获取数据数据中心的交易情绪指标接口"""
+    #获取数据数据中心的交易情绪指标接口#
     @Router.route(url = r"datacenter/tradeactivity", method = Router._GET|Router._POST)
     def tradeactivity_action(self,req):
         resource_entity = self.tradeactivity_resource()
