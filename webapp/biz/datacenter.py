@@ -148,7 +148,7 @@ class  DataCenterResourceAction(object):
         return result
      
     #波罗地海航运干货指数#
-    @Router.route(url = r"datacenter/forexgold", method = Router._GET|Router._POST)
+    @Router.route(url = r"datacenter/bulkcargotrans", method = Router._GET|Router._POST)
     def bulkcargotrans_action(self,req):
         current_resource = self.bulkcargotrans_resource()
         currenttime= []
