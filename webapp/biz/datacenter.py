@@ -156,8 +156,11 @@ class  DataCenterResourceAction(object):
         for current_dict in current_resource:
             for (key,value) in current_dict.iteritems():
                 if('CURRENTTIME'==key):
-                    currenttime.append(object)
-                
+                    currenttime.append(value)
+                elif('INDEXVALUE'==key):
+                    indexvalue.append(value)
+        currentdata ={'currenttime':currenttime,'indexvalue':indexvalue}
+        return req.ok(currentdata)
                     
         
     def bulkcargotrans_resource(self):
