@@ -26,7 +26,13 @@ class  DataCenterResourceAction(object):
     def tradeactivity_resource(self):
         session = Session('master')
         logger.info('数据中心交易情绪查询查询...！')
-        resources = session.select(resModel.TradeActivity,{})
+        sql = " SELECT " \
+              " CONCAT(SUBSTRING(DATACENTER.STARTDATE,1,10),'-',SUBSTRING(DATACENTER.ENDDATE,1,10)) AS STARTDATE," \
+              " DATACENTER.CURRENTVALUE AS CURRENTVALUE " \
+              " FROM " \
+              " DATACENTER_TRADEACTIVITY_RESOURCE_TABLE DATACENTER " \
+              " WHERE 1 = 1 ORDER BY DATACENTER.STARTDATE DESC LIMIT 0,20"
+        resources = session.select_result(sql)
         return resources
 
 
