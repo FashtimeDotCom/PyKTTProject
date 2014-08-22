@@ -6,7 +6,6 @@ from util.tools import Log
 logger = Log().getLog()
 
 class  HeadLineResourceAction(object):
-
     #获取当日头条新闻信息接口#
     @Router.route(url = r"headline/morningnews", method = Router._GET|Router._POST)
     def headline_morningnews_action(self,req):
@@ -44,6 +43,5 @@ class  HeadLineResourceAction(object):
               " AND HEADLINE.TITLE !=''" \
               " AND HEADLINE.DESCRIPTCONTEXT !=''" \
               " ORDER BY HEADLINE.PUBDATE DESC LIMIT 0,6"
-        print(sql)
         result = session.select_result(sql)
         return result
