@@ -37,7 +37,7 @@ class  DataCenterResourceAction(object):
         return resources
 
 
-     #获取数据中心市场交易活跃度指标接口#
+    #获取数据中心市场交易活跃度指标接口#
     @Router.route(url = r"datacenter/marketsentiment", method = Router._GET|Router._POST)
     def marketsentiment_action(self,req):
          current_resource = self.marketsentiment_resource()
@@ -169,10 +169,10 @@ class  DataCenterResourceAction(object):
         currentdata ={'currenttime':currenttime,'indexvalue':indexvalue}
         return req.ok(currentdata)
                     
-        
+    #波罗地海航运干货指数查询#
     def bulkcargotrans_resource(self):
         session = Session('master')
-        logger.info('国家黄金外汇储备查询...！')
+        logger.info('波罗地海航运干货指数查询...！')
         sql = " SELECT SUBSTRING(DATACENTER.CURRENTTIME,1,10) AS CURRENTTIME," \
               " DATACENTER.INDEXVALUE AS INDEXVALUE " \
               " FROM  DATACENTER_BULKCARGOTRANS_RESOURCE_TABLE DATACENTER  " \
