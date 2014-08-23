@@ -184,7 +184,7 @@ class  DataCenterResourceAction(object):
     #股票账户信息指标信息查询接口#
     @Router.route(url = r"datacenter/stockaccount", method = Router._GET|Router._POST)
     def stockaccount_action(self,req):
-        current_resource = self.stockfuture_resource()
+        current_resource = self.stockaccount_resource()
         currentdate=[]
         finaleffaccnum=[]
         addaccnum=[]
@@ -195,7 +195,7 @@ class  DataCenterResourceAction(object):
         finalshsleepnum=[]
         finalsleepnum=[]
         for current_dict in current_resource:
-            for (key,value) in current_dict:
+            for (key,value) in current_dict.iteritems():
                 if('STARTDATE'==key):
                     currentdate.append(value)
                 elif('ADDSUMACCNUM'==key):
@@ -215,9 +215,9 @@ class  DataCenterResourceAction(object):
                 elif('FINALSHSLEEPACCNUM'==key):
                     finalshsleepnum.append(value)
         currentdata ={'currentdate':currentdate,'finaleffaccnum':finaleffaccnum,
-                      'addaccnum':addaccnum,'addshaccnum':addshaccnum
-                     'addszaccnum':addszaccnum,'finalaccnum':finalaccnum
-                     'finalszsleepnum':finalszsleepnum,'finalshsleepnum':finalshsleepnum
+                      'addaccnum':addaccnum,'addshaccnum':addshaccnum,
+                     'addszaccnum':addszaccnum,'finalaccnum':finalaccnum,
+                     'finalszsleepnum':finalszsleepnum,'finalshsleepnum':finalshsleepnum,
                      'finalsleepnum':finalsleepnum}
         return req.ok(currentdata)
 
