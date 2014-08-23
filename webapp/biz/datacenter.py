@@ -2,7 +2,6 @@
 from util.route import Router
 from db_util import Session
 from util.tools import Log
-from entity import resModel
 
 logger = Log().getLog()
 
