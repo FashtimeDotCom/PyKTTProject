@@ -180,5 +180,68 @@ class  DataCenterResourceAction(object):
               " ORDER BY DATACENTER.CURRENTTIME DESC LIMIT 0,25"
         result = session.select_result(sql)
         return result
-     
 
+    #股票账户信息指标信息查询接口#
+    @Router.route(url = r"datacenter/stockaccount", method = Router._GET|Router._POST)
+    def stockaccount_action(self,req):
+        current_resource = self.stockfuture_resource()
+        currentdate=[]
+        finaleffaccnum=[]
+        addaccnum=[]
+        addshaccnum=[]
+        addszaccnum=[]
+        finalaccnum=[]
+        finalszsleepnum=[]
+        finalshsleepnum=[]
+        finalsleepnum=[]
+        for current_dict in current_resource:
+            for (key,value) in current_dict:
+                if('STARTDATE'==key):
+                    currentdate.append(value)
+                elif('ADDSUMACCNUM'==key):
+                    addaccnum.append(value)
+                elif('FINALSUMEFFACCNUM'==key):
+                    finaleffaccnum.append(value)
+                elif('ADDSHACCNUM'==key):
+                    addshaccnum.append(value)
+                elif('ADDSZACCNUM'==key):
+                    addszaccnum.append(value)
+                elif('FINALSUMACCNUM'==key):
+                    finalaccnum.append(value)
+                elif('FINALSUMSLEEPACCNUM'==key):
+                    finalsleepnum.append(value)
+                elif('FINALSZSLEEPACCNUM'==key):
+                    finalszsleepnum.append(value)
+                elif('FINALSHSLEEPACCNUM'==key):
+                    finalshsleepnum.append(value)
+        currentdata ={'currentdate':currentdate,'finaleffaccnum':finaleffaccnum,
+                      'addaccnum':addaccnum,'addshaccnum':addshaccnum
+                     'addszaccnum':addszaccnum,'finalaccnum':finalaccnum
+                     'finalszsleepnum':finalszsleepnum,'finalshsleepnum':finalshsleepnum
+                     'finalsleepnum':finalsleepnum}
+        return req.ok(currentdata)
+
+    #股票账户信息指标信息查询#
+    def stockaccount_resource(self):
+        session = Session('master')
+        logger.info('股票账户信息指标信息查询...！')
+        sql=" SELECT " \
+            " CONCAT(SUBSTRING(DATACENTER.STARTDATE,1,10),'-',SUBSTRING(DATACENTER.ENDDATE,1,10)) AS STARTDATE, " \
+            " DATACENTER.FINALSHEFFACCNUM AS FINALSHEFFACCNUM, " \
+            " DATACENTER.FINALSZEFFACCNUM AS FINALSZEFFACCNUM, " \
+            " DATACENTER.FINALSUMEFFACCNUM AS FINALSUMEFFACCNUM," \
+            " DATACENTER.ADDSHACCNUM AS ADDSHACCNUM, " \
+            " DATACENTER.ADDSZACCNUM AS ADDSZACCNUM, " \
+            " DATACENTER.ADDSUMACCNUM AS ADDSUMACCNUM, " \
+            " DATACENTER.FINALSHACCNUM AS FINALSHACCNUM, " \
+            " DATACENTER.FINALSZACCNUM AS FINALSZACCNUM, " \
+            " DATACENTER.FINALSUMACCNUM AS FINALSUMACCNUM, " \
+            " DATACENTER.FINALSZSLEEPACCNUM AS FINALSZSLEEPACCNUM," \
+            " DATACENTER.FINALSHSLEEPACCNUM AS FINALSHSLEEPACCNUM, " \
+            " DATACENTER.FINALSUMSLEEPACCNUM AS FINALSUMSLEEPACCNUM " \
+            "FROM " \
+            "DATACENTER_STOCKACCOUNT_RESOURCE_TABLE DATACENTER " \
+            "WHERE " \
+            "1 = 1 ORDER BY DATACENTER.STARTDATE DESC LIMIT 0,25"
+        result = session.select_result(sql)
+        return result
