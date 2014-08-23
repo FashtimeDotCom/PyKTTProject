@@ -12,14 +12,15 @@ class  DataCenterResourceAction(object):
     @Router.route(url = r"datacenter/tradeactivity", method = Router._GET|Router._POST)
     def tradeactivity_action(self,req):
         resource_entity = self.tradeactivity_resource()
-        current_date = []
-        current_value = []
+        currentdate = []
+        currentvalue = []
         for current_dict in  resource_entity:
-            current_dict['STARTDATE'] = current_dict['STARTDATE'].strftime('%Y-%m-%d')
-            current_dict['ENDDATE'] = current_dict['ENDDATE'].strftime('%Y-%m-%d')
-            current_date.append(current_dict['STARTDATE']+'至'+current_dict['ENDDATE'])
-            current_value.append(current_dict['CURRENTVALUE'])
-        resource_entity = {'currentdate':current_date,'currentvalue':current_value}
+            for (key,value) in current_dict.iteritems():
+                if('STARTDATE'==key):
+                    currentdate.append(value)
+                elif('CURRENTVALUE'==key):
+                    currentvalue.append(value)
+        resource_entity = {'currentdate':currentdate,'currentvalue':currentvalue}
         return req.ok(resource_entity)
 
     #数据中心交易情绪查询操作方法#
@@ -30,8 +31,9 @@ class  DataCenterResourceAction(object):
               " CONCAT(SUBSTRING(DATACENTER.STARTDATE,1,10),'-',SUBSTRING(DATACENTER.ENDDATE,1,10)) AS STARTDATE," \
               " DATACENTER.CURRENTVALUE AS CURRENTVALUE " \
               " FROM " \
-              " DATACENTER_TRADEACTIVITY_RESOURCE_TABLE DATACENTER " \
+              " DATACENTER_TRADEACTIVITY DATACENTER " \
               " WHERE 1 = 1 ORDER BY DATACENTER.STARTDATE DESC LIMIT 0,20"
+        print(sql)
         resources = session.select_result(sql)
         return resources
 
