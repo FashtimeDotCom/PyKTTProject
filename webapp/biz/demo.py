@@ -17,6 +17,7 @@ class KtResourceAction(object):
         resource_entity = resource_entity[0]
         resource_entity['CREATEDATE'] =resource_entity['CREATEDATE'].strftime('%Y-%m-%d %H:%M:%S')
         return req.ok(resource_entity)
+
     """在单独的业务方法里面写"""
     def get_resource(self, id):
         session = Session('master')

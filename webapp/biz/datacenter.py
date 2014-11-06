@@ -30,7 +30,7 @@ class  DataCenterResourceAction(object):
               " CONCAT(SUBSTRING(DATACENTER.STARTDATE,1,10),'-',SUBSTRING(DATACENTER.ENDDATE,1,10)) AS STARTDATE," \
               " DATACENTER.CURRENTVALUE AS CURRENTVALUE " \
               " FROM " \
-              " DATACENTER_TRADEACTIVITY DATACENTER " \
+              " DATACENTER_TRADEACTIVITY_RESOURCE_TABLE DATACENTER " \
               " WHERE 1 = 1 ORDER BY DATACENTER.STARTDATE DESC LIMIT 0,20"
         print(sql)
         resources = session.select_result(sql)
@@ -60,7 +60,7 @@ class  DataCenterResourceAction(object):
         sql = "SELECT SUBSTRING(DATACENTER.CURRENTDATE,1,10) AS CURRENTDATE," \
               " DATACENTER.CURRENTVALUE AS CURRENTVALUE" \
               " FROM " \
-              " DATACENTER_MARKETSENTIMENT DATACENTER" \
+              " DATACENTER_MARKETSENTIMENT_RESOURCE_TABLE DATACENTER" \
               " WHERE 1 = 1 " \
               " ORDER BY DATACENTER.CURRENTDATE DESC LIMIT 0,15"
         result = session.select_result(sql);
