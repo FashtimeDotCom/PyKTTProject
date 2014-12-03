@@ -304,7 +304,7 @@ class  DataCenterResourceAction(object):
     @Router.route(url = r"datacenter/lrp", method = Router._GET|Router._POST)
     def lrp_action(self,req):
         current_resource = self.lrp_resource()
-        lrp1y= []
+        lrp1y = []
         currenttime = []
         for current_dict in current_resource:
             for (key,value) in current_dict.iteritems():
