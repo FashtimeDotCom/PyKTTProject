@@ -301,8 +301,8 @@ class  DataCenterResourceAction(object):
         return result
 
     #一年期贷款利率查询接口#
-    @Router.route(url = r"datacenter/bulkcargotrans", method = Router._GET|Router._POST)
-    def bulkcargotrans_action(self,req):
+    @Router.route(url = r"datacenter/lrp", method = Router._GET|Router._POST)
+    def lrp_action(self,req):
         current_resource = self.lrp_resource()
         lrp1y= []
         currenttime = []
