@@ -298,3 +298,31 @@ class  DataCenterResourceAction(object):
               " RESOURCE.SHIBOR9M AS SHIBOR9M, RESOURCE.SHIBOR1Y AS SHIBOR1Y " \
               " FROM  DATACENTER_SHIBOR_RESOURCE_TABLE AS RESOURCE LIMIT 0,25"
         result = session.select_result(SQL)
+        return result
+
+    #一年期贷款利率查询接口#
+    @Router.route(url = r"datacenter/bulkcargotrans", method = Router._GET|Router._POST)
+    def bulkcargotrans_action(self,req):
+        current_resource = self.lrp_resource()
+        lrp1y= []
+        currenttime = []
+        for current_dict in current_resource:
+            for (key,value) in current_dict.iteritems():
+                if('CURRENTTIME'==key):
+                    currenttime.append(value)
+                elif('LRPIY'==key):
+                    lrp1y.append(value)
+        currentdata ={'currenttime':currenttime,'lrp1y':lrp1y}
+        return req.ok(currentdata)
+
+    #一年期贷款利率查询#
+    def lrp_resource(self):
+        session = Session('master')
+        logger.info('一年期贷款利率查询...!')
+        SQL ="SELECT  RESOURCE.LRPIY AS  LRPIY , RESOURCE.CURRENTTIME AS CURRENTTIME " \
+             "FROM  DATACENTER_LPR_RESOURCE_TABLE AS RESOURCE"
+        result = session.select_result(SQL)
+        return result
+
+
+
