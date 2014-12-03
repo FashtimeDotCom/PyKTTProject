@@ -245,3 +245,56 @@ class  DataCenterResourceAction(object):
             "1 = 1 ORDER BY DATACENTER.STARTDATE DESC LIMIT 0,25"
         result = session.select_result(sql)
         return result
+
+
+    #隔夜银行拆借利率查询接口#
+    @Router.route(url = r"datacenter/shibor", method = Router._GET|Router._POST)
+    def shibor_action(self,req):
+        current_resource = self.shibor_resource()
+        currenttime=[]
+        shiboron = []
+        shibor1w =[]
+        shibor2w=[]
+        shibor1m=[]
+        shibor3m=[]
+        shibor6m=[]
+        shibor9m=[]
+        shibor1y=[]
+        for current_dict in current_resource:
+            for (key,value) in current_dict.iteritems():
+                if('CURRENTTIME'==key):
+                    currenttime.append(value)
+                elif('SHIBORON'==key):
+                    shiboron.append(value)
+                elif('SHIBOR1W'==key):
+                    shibor1w.append(value)
+                elif('SHIBOR2W'==key):
+                    shibor2w.append(value)
+                elif('SHIBOR1M'==key):
+                    shibor1m.append(value)
+                elif('SHIBOR3M'==key):
+                    shibor3m.append(value)
+                elif('SHIBOR6M'==key):
+                    shibor6m.append(value)
+                elif('SHIBOR9M'==key):
+                    shibor9m.append(value)
+                elif('SHIBOR1Y'==key):
+                    shibor1y.append(value)
+        currentdata ={'currenttime':currenttime,'shiboron':shiboron,
+                      'shibor1w':shibor1w,'shibor2w':shibor2w,
+                     'shibor1m':shibor1m,'shibor3m':shibor3m,
+                     'shibor6m':shibor6m,'shibor9m':shibor9m,
+                     'shibor1y':shibor1y}
+        return req.ok(currentdata)
+
+    #隔夜银行拆借利率查询#
+    def shibor_resource(self):
+        session = Session('master')
+        logger.info('上海银行同业拆借利率查询...!')
+        SQL = " SELECT  RESOURCE.CURRENTTIME AS CURRENTTIME , RESOURCE.SHIBORON AS SHIBORON, " \
+              " RESOURCE.SHIBOR1W AS SHIBOR1W, " \
+              " RESOURCE.SHIBOR2W AS SHIBOR2W, RESOURCE.SHIBOR1M AS SHIBOR1M, " \
+              " RESOURCE.SHIBOR3M AS SHIBOR3M, RESOURCE.SHIBOR6M AS SHIBOR6M, " \
+              " RESOURCE.SHIBOR9M AS SHIBOR9M, RESOURCE.SHIBOR1Y AS SHIBOR1Y " \
+              " FROM  DATACENTER_SHIBOR_RESOURCE_TABLE AS RESOURCE LIMIT 0,25"
+        result = session.select_result(SQL)
