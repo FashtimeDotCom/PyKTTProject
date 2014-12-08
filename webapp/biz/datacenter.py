@@ -325,6 +325,23 @@ class  DataCenterResourceAction(object):
         return result
 
 
+    #社会用电量查询接口#
+    @Router.route(url = r"datacenter/socialpower", method = Router._GET|Router._POST)
+    def lrp_action(self,req):
+        current_resource = self.socialpower_resource()
+        socialpower = []
+        currenttime = []
+        changeratio = []
+        for current_dict in current_resource:
+            for (key,value) in current_dict.iteritems():
+                if('CURRENTTIME'==key):
+                    currenttime.append(value)
+                elif('SOCIALPOWER'==key):
+                    socialpower.append(value)
+                elif('CHANGERATIO' == key):
+                    changeratio.append(value)
+        currentdata ={'currenttime':currenttime,'socialpower':socialpower,'changeratio':changeratio}
+        return req.ok(currentdata)
 
 
     #社会用电量查询#
