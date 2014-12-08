@@ -326,3 +326,16 @@ class  DataCenterResourceAction(object):
 
 
 
+
+    #社会用电量查询#
+    def socialpower_resource(self):
+        session = Session('master')
+        logger.info('社会用电量查询..!')
+        SQL = " SELECT RESOURCE.CURRENTTIME AS CURRENTTIME, " \
+              " RESOURCE.SOCIALPOWER AS SOCIALPOWER, " \
+              " RESOURCE.CHANGERATIO AS CHANGERATIO " \
+              " FROM " \
+              " DATACENTER_SOCIALPOWER_RESOURCE_TABLE AS RESOURCE"
+        result = session.select_result(SQL)
+        return result
+
