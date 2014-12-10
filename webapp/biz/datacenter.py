@@ -356,3 +356,37 @@ class  DataCenterResourceAction(object):
         result = session.select_result(SQL)
         return result
 
+
+    #汇丰PMI制造业指数查询接口#
+    @Router.route(url = r"datacenter/pmi", method = Router._GET|Router._POST)
+    def lrp_action(self,req):
+        current_resource = self.pmi_source()
+        statistics = []
+        chinamultiplepmi = []
+        hsbcmanufacturingpmi = []
+        hsbcservicepmi = []
+        for current_dict in current_resource:
+            for (key,value) in current_dict.iteritems():
+                if('STATISTICS'==key):
+                    statistics.append(value)
+                elif('CHINAMULTIPLEPMI'==key):
+                    chinamultiplepmi.append(value)
+                elif('HSBCMANUFACTURINGPMI' == key):
+                    hsbcmanufacturingpmi.append(value)
+                elif('HSBCSERVICEPMI' == key):
+                    hsbcservicepmi.append(value)
+        currentdata ={'statistics':statistics,'chinamultiplepmi':chinamultiplepmi,
+                      'hsbcmanufacturingpmi':hsbcmanufacturingpmi,
+                      'hsbcservicepmi':hsbcservicepmi}
+        return req.ok(currentdata)
+
+    #汇丰PMI制造业指数#
+    def pmi_source(self):
+        session = Session('master')
+        SQL = " SELECT RESOURCE.STATISTICS AS STATISTICS, " \
+              " RESOURCE.CHINA_MULTIPLEP_MI AS CHINAMULTIPLEPMI, " \
+              " RESOURCE.HSBC_MANUFACTURING_PMI AS HSBCMANUFACTURINGPMI, " \
+              " RESOURCE.HSBC_SERVICE_PMI AS HSBCSERVICEPMI " \
+              " FROM DATACENTER_PMI_RESOURCE_TABLE AS RESOURCE"
+        result = session.select_result(SQL)
+        return result
