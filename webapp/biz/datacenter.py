@@ -327,7 +327,7 @@ class  DataCenterResourceAction(object):
 
     #社会用电量查询接口#
     @Router.route(url = r"datacenter/socialpower", method = Router._GET|Router._POST)
-    def lrp_action(self,req):
+    def socialpower_action(self,req):
         current_resource = self.socialpower_resource()
         socialpower = []
         currenttime = []
@@ -359,7 +359,7 @@ class  DataCenterResourceAction(object):
 
     #汇丰PMI制造业指数查询接口#
     @Router.route(url = r"datacenter/pmi", method = Router._GET|Router._POST)
-    def lrp_action(self,req):
+    def pmi_action(self,req):
         current_resource = self.pmi_source()
         statistics = []
         chinamultiplepmi = []
