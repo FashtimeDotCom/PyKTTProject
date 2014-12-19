@@ -63,7 +63,7 @@ class  DataCenterResourceAction(object):
               " DATACENTER_MARKETSENTIMENT_RESOURCE_TABLE DATACENTER" \
               " WHERE 1 = 1 " \
               " ORDER BY DATACENTER.CURRENTDATE DESC LIMIT 0,15"
-        result = session.select_result(sql);
+        result = session.select_result(sql)
         return result
 
 
