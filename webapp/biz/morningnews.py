@@ -6,13 +6,13 @@ from util.tools import Log
 logger = Log().getLog()
 
 class  MorningNewsResourceAction(object):
-    #获取当日头条新闻信息接口#
+    #获取国内当天的财经新闻接口#
     @Router.route(url = r"headline/morningnews", method = Router._GET|Router._POST)
-    def headline_morningnews_action(self,req):
-        print  req
+    def china_morningnews_action(self,req):
+        print
 
 
-    #查询当日头条新闻信息#
-    def headline_morningnews_resource(self):
+    #查询国内当天的财经新闻信息#
+    def china_morningnews_resource(self):
         session = Session('master')
-        logger.info('查询当日头条新闻信息...！')
+        logger.info('查询国内当天的财经新闻信息...！')
