@@ -43,10 +43,10 @@ class  MorningNewsResourceAction(object):
     #查询财经新闻详情通用查询接口#
     def common_morningnews_data(self,type,start,limit):
         session = Session('master')
-        SQL = " SELECT NEWS.TITLE AS TITLE, NEWS.IMAGEURL AS IMAGEURL, " \
-              " SUBSTRING(NEWS.PUBDATE,1,16) AS PUBDATE, " \
-              " NEWS.LINKURL AS LINKURL , " \
-              " NEWS.DESCRIPTCONTEXT AS DESCRIPTCONTEXT " \
+        SQL = " SELECT NEWS.TITLE AS title, NEWS.IMAGEURL AS imageUrl, " \
+              " SUBSTRING(NEWS.PUBDATE,1,16) AS pubDate, " \
+              " NEWS.LINKURL AS linkUrl , " \
+              " NEWS.DESCRIPTCONTEXT AS descriptContext " \
               " FROM  MORNING_FINANCENEWS_RESOURCE_TABLE  NEWS  " \
               " WHERE  1=1  AND  NEWS.NEWSFLAG = '%s' " \
               " ORDER BY  NEWS.PUBDATE DESC  " \
@@ -102,11 +102,11 @@ class  MorningNewsResourceAction(object):
     #查询国内外外汇及时新闻--通用查询方法#
     def other_common_morningnews_data(self,type,start,limit):
         session = Session('master')
-        SQL = " SELECT NEWS.TITLE AS TITLE," \
-              " NEWS.IMAGEURL AS IMAGEURL," \
-              " SUBSTRING(NEWS.PUBDATE, 1, 16) AS PUBDATE, " \
-              " NEWS.LINKURL AS LINKURL, " \
-              " NEWS.DESCRIPTCONTEXT AS DESCRIPTCONTEXT " \
+        SQL = " SELECT NEWS.TITLE AS title," \
+              " NEWS.IMAGEURL AS imageUrl," \
+              " SUBSTRING(NEWS.PUBDATE, 1, 16) AS pubDate, " \
+              " NEWS.LINKURL AS linkUrl, " \
+              " NEWS.DESCRIPTCONTEXT AS descriptContext " \
               " FROM " \
               " MORNING_OTHERNEWS_RESOURCE_TABLE NEWS " \
               " WHERE 1 = 1 AND NEWS.NEWSFLAG = '%s' " \
@@ -118,7 +118,7 @@ class  MorningNewsResourceAction(object):
 
     def other_common_morningnews_count(self,type):
         session = Session('master')
-        SQL = " SELECT COUNT(*) FROM  MORNING_OTHERNEWS_RESOURCE_TABLE  NEWS " \
+        SQL = " SELECT COUNT(*) AS COUNTS  FROM  MORNING_OTHERNEWS_RESOURCE_TABLE  NEWS " \
               " WHERE  1=1  AND  NEWS.NEWSFLAG = '%s' "%type
         result = session.select_resultone(SQL)
         return result
