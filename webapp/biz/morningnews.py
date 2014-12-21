@@ -90,7 +90,7 @@ class  MorningNewsResourceAction(object):
 
     #查询国内外外汇及时新闻--国内外(汇市/贵金属/期货)新闻快讯处理类--期货#
     @Router.route(url = r"morningnews/futuremorningnews", method = Router._GET|Router._POST)
-    def metal_morningnews_action(self,req):
+    def future_morningnews_action(self,req):
         start=req.json_args.get("start")
         limit=req.json_args.get("limit")
         type = 'FUTURE'
