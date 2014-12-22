@@ -46,7 +46,7 @@ class  CommentsResourceAction(object):
         return result
 
 
-    #获取当天的财经评论接口--查询当天外汇评论#
+    #获取当天的财经评论接口--查询当天财经评论#
     @Router.route(url = r"comments/dailyfinance", method = Router._GET|Router._POST)
     def daily_finance_comments_action(self,req):
         start=req.json_args.get("start")
@@ -56,7 +56,7 @@ class  CommentsResourceAction(object):
         currentdata = {'data':data,'count':count['COUNTS']}
         return req.ok(currentdata)
 
-    #查询当天外汇评论详情通用查询接口#
+    #查询当天财经评论详情通用查询接口#
     def daily_finance_comments_data(self,start,limit):
         session = Session('master')
         SQL = " SELECT  COMMENTSFINANCE.KEYID AS keyId , " \
@@ -70,17 +70,17 @@ class  CommentsResourceAction(object):
               " AND   COMMENTSFINANCE.COMMENTFLAG = 'FINANCE' " \
               " ORDER BY  COMMENTSFINANCE.PUBDATE DESC " \
               " LIMIT %s,%s"%(start,limit)
-        logger.info('查询当天外汇评论详情通用查询接口...！SQL:'+SQL)
+        logger.info('查询当天财经评论详情通用查询接口...！SQL:'+SQL)
         result = session.select_result(SQL)
         return result
 
-    #查询当天外汇评论总条数查询接口#
+    #查询当天财经评论总条数查询接口#
     def daily_finance_comments_count(self):
         session = Session('master')
         SQL =" SELECT  COUNT(*) " \
              " FROM  COMMENTS_FINANCE_RESOURCE_TABLE  COMMENTSFINANCE " \
              " WHERE 1=1" \
-             " AND   COMMENTSFINANCE.DESCRIPTCONTEXT !=''" \
-             " AND   COMMENTSFINANCE.COMMENTFLAG = 'FINANCE'"
+             " AND COMMENTSFINANCE.DESCRIPTCONTEXT !=''" \
+             " AND COMMENTSFINANCE.COMMENTFLAG = 'FINANCE'"
         result = session.select_resultone(SQL)
         return result
