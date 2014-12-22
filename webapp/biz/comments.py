@@ -8,6 +8,9 @@ logger = Log().getLog()
 #财经评论服务层#
 class  CommentsResourceAction(object):
 
+
+
+
     #获取当天的财经评论接口--查询当天股票评论#
     @Router.route(url = r"comments/dailystock", method = Router._GET|Router._POST)
     def daily_stock_comments_action(self,req):
@@ -44,6 +47,8 @@ class  CommentsResourceAction(object):
              " WHERE 1=1 AND   COMMENTSSTOCK.DESCRIPTCONTEXT !='' "
         result = session.select_resultone(SQL)
         return result
+
+
 
 
     #获取当天的财经评论接口--查询当天财经评论#
@@ -86,6 +91,8 @@ class  CommentsResourceAction(object):
         return result
 
 
+
+
     #获取当天的财经评论接口--查询当天外汇评论#
     @Router.route(url = r"comments/todayforex", method = Router._GET|Router._POST)
     def today_forex_comments_action(self,req):
@@ -99,9 +106,12 @@ class  CommentsResourceAction(object):
     #查询当天外汇评论详情通用查询接口#
     def today_forex_comments_data(self,start,limit):
         session = Session('master')
-        SQL = " SELECT COMMENTSNEWS.KEYID, COMMENTSNEWS.LINKURL, " \
-              " COMMENTSNEWS.TITLE, SUBSTRING(COMMENTSNEWS.PUBDATE,1,16) AS PUBDATE, " \
-              " COMMENTSNEWS.DESCRIPTCONTEXT, COMMENTSNEWS.SOURCEFLAG " \
+        SQL = " SELECT COMMENTSNEWS.KEYID AS keyId," \
+              " COMMENTSNEWS.LINKURL AS linkUrl, " \
+              " COMMENTSNEWS.TITLE AS title," \
+              " SUBSTRING(COMMENTSNEWS.PUBDATE,1,16) AS pubDate, " \
+              " COMMENTSNEWS.DESCRIPTCONTEXT AS descriptContext," \
+              " COMMENTSNEWS.SOURCEFLAG AS sourceFlag " \
               " FROM COMMENTS_NEWS_RESOURCE_TABLE COMMENTSNEWS " \
               " WHERE 1 = 1" \
               " AND COMMENTSNEWS.COMMENTFLAG = 'FOREX'" \
@@ -121,5 +131,48 @@ class  CommentsResourceAction(object):
              " AND COMMENTSNEWS.COMMENTFLAG = 'FOREX'" \
              " AND COMMENTSNEWS.TITLE !=''" \
              " ORDER BY COMMENTSNEWS.PUBDATE DESC"
+        result = session.select_resultone(SQL)
+        return result
+
+
+
+
+    #获取当天的财经评论接口--查询当天贵金属评论#
+    @Router.route(url = r"comments/todaymetal", method = Router._GET|Router._POST)
+    def today_metal_comments_action(self,req):
+        start=req.json_args.get("start")
+        limit=req.json_args.get("limit")
+        count = self.today_metal_comments_count()
+        data = self.today_metal_comments_data(start,limit)
+        currentdata = {'data':data,'count':count['COUNTS']}
+        return req.ok(currentdata)
+
+    #查询当天贵金属论详情通用查询接口#
+    def today_metal_comments_data(self,start,limit):
+        session = Session('master')
+        SQL = " SELECT COMMENTSMETAL.KEYID AS keyId," \
+              " COMMENTSMETAL.LINKURL AS linkUrl," \
+              " COMMENTSMETAL.TITLE AS title ," \
+              " SUBSTRING(COMMENTSMETAL.PUBDATE, 1, 16) AS pubDate," \
+              " COMMENTSMETAL.DESCRIPTCONTEXT AS descriptContext," \
+              " COMMENTSMETAL.SOURCEFLAG AS sourceFlag " \
+              " FROM COMMENTS_METAL_RESOURCE_TABLE COMMENTSMETAL" \
+              " WHERE 1 = 1" \
+              " AND COMMENTSMETAL.COMMENTFLAG = 'METAL'" \
+              " AND COMMENTSMETAL.DESCRIPTCONTEXT !=''" \
+              " ORDER BY COMMENTSMETAL.PUBDATE DESC" \
+              " LIMIT %s,%s"%(start,limit)
+        logger.info('查询当天外汇评论详情通用查询接口...！SQL:'+SQL)
+        result = session.select_result(SQL)
+        return result
+
+    #查询当天贵金属评论总条数查询接口#
+    def today_metal_comments_count(self):
+        session = Session('master')
+        SQL =" SELECT  COUNT(*)  FROM" \
+             " COMMENTS_METAL_RESOURCE_TABLE COMMENTSMETAL" \
+             " WHERE 1 = 1" \
+             " AND COMMENTSMETAL.COMMENTFLAG = 'METAL'" \
+             " AND COMMENTSMETAL.DESCRIPTCONTEXT !=''"
         result = session.select_resultone(SQL)
         return result
