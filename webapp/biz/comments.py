@@ -84,3 +84,42 @@ class  CommentsResourceAction(object):
              " AND COMMENTSFINANCE.COMMENTFLAG = 'FINANCE'"
         result = session.select_resultone(SQL)
         return result
+
+
+    #获取当天的财经评论接口--查询当天外汇评论#
+    @Router.route(url = r"comments/todayforex", method = Router._GET|Router._POST)
+    def today_forex_comments_action(self,req):
+        start=req.json_args.get("start")
+        limit=req.json_args.get("limit")
+        count = self.today_forex_comments_count()
+        data = self.today_forex_comments_data(start,limit)
+        currentdata = {'data':data,'count':count['COUNTS']}
+        return req.ok(currentdata)
+
+    #查询当天外汇评论详情通用查询接口#
+    def today_forex_comments_data(self,start,limit):
+        session = Session('master')
+        SQL = " SELECT COMMENTSNEWS.KEYID, COMMENTSNEWS.LINKURL, " \
+              " COMMENTSNEWS.TITLE, SUBSTRING(COMMENTSNEWS.PUBDATE,1,16) AS PUBDATE, " \
+              " COMMENTSNEWS.DESCRIPTCONTEXT, COMMENTSNEWS.SOURCEFLAG " \
+              " FROM COMMENTS_NEWS_RESOURCE_TABLE COMMENTSNEWS " \
+              " WHERE 1 = 1" \
+              " AND COMMENTSNEWS.COMMENTFLAG = 'FOREX'" \
+              " AND COMMENTSNEWS.TITLE !=''" \
+              " ORDER BY COMMENTSNEWS.PUBDATE DESC" \
+              " LIMIT %s,%s"%(start,limit)
+        logger.info('查询当天外汇评论详情通用查询接口...！SQL:'+SQL)
+        result = session.select_result(SQL)
+        return result
+
+    #查询当天外汇评论总条数查询接口#
+    def today_forex_comments_count(self):
+        session = Session('master')
+        SQL =" SELECT COUNT(*) AS COUNT " \
+             " FROM COMMENTS_NEWS_RESOURCE_TABLE COMMENTSNEWS" \
+             " WHERE 1 = 1" \
+             " AND COMMENTSNEWS.COMMENTFLAG = 'FOREX'" \
+             " AND COMMENTSNEWS.TITLE !=''" \
+             " ORDER BY COMMENTSNEWS.PUBDATE DESC"
+        result = session.select_resultone(SQL)
+        return result
