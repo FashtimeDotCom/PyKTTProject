@@ -393,7 +393,7 @@ class  DataCenterResourceAction(object):
 
 
     #美元指数资源查询接口#
-    @Router.route(url = r"datacenter/pmi", method = Router._GET|Router._POST)
+    @Router.route(url = r"datacenter/dollarindex", method = Router._GET|Router._POST)
     def dollarindex_action(self,req):
         current_resource = self.dollarindex_source()
         openTime = []
