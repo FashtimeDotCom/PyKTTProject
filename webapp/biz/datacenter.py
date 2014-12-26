@@ -390,3 +390,30 @@ class  DataCenterResourceAction(object):
               " FROM DATACENTER_PMI_RESOURCE_TABLE AS RESOURCE"
         result = session.select_result(SQL)
         return result
+
+
+    #美元指数资源查询接口#
+    @Router.route(url = r"datacenter/pmi", method = Router._GET|Router._POST)
+    def dollarindex_action(self,req):
+        current_resource = self.dollarindex_source()
+        openTime = []
+        newStockPrice = []
+        for current_dict in current_resource:
+            for (key,value) in current_dict.iteritems():
+                if ('NEWSTOCKPRICE'==key):
+                    newStockPrice.append(value)
+                elif('OPENTIME'==key):
+                    openTime.append(value)
+        currentdata = {'newstockprice':newStockPrice,'opentime':openTime}
+        return currentdata
+
+
+    #美元指数资源查询#
+    def dollarindex_source(self):
+        session = Session('master')
+        SQL = ' SELECT RESOURCE.NEWSTOCKPRICE AS NEWSTOCKPRICE,' \
+              ' RESOURCE.OPENTIME AS OPENTIME ' \
+              ' FROM DATACENTER_DOLLARINDEX_RESOURCE_TABLE RESOURCE' \
+              ' ORDER BY RESOURCE.OPENTIME DESC LIMIT 0,25'
+        result = session.select_result(SQL)
+        return result
