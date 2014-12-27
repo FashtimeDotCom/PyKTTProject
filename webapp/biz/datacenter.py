@@ -405,7 +405,7 @@ class  DataCenterResourceAction(object):
                 elif('OPENTIME'==key):
                     openTime.append(value)
         currentdata = {'newstockprice':newStockPrice,'opentime':openTime}
-        return currentdata
+        return req.ok(currentdata)
 
 
     #美元指数资源查询#
