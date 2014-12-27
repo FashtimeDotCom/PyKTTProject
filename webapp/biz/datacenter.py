@@ -291,7 +291,7 @@ class  DataCenterResourceAction(object):
     def shibor_resource(self):
         session = Session('master')
         logger.info('上海银行同业拆借利率查询...!')
-        SQL = " SELECT  RESOURCE.CURRENTTIME AS CURRENTTIME , RESOURCE.SHIBORON AS SHIBORON, " \
+        SQL = " SELECT  SUBSTRING(RESOURCE.CURRENTTIME,1,10) AS CURRENTTIME , RESOURCE.SHIBORON AS SHIBORON, " \
               " RESOURCE.SHIBOR1W AS SHIBOR1W, " \
               " RESOURCE.SHIBOR2W AS SHIBOR2W, RESOURCE.SHIBOR1M AS SHIBOR1M, " \
               " RESOURCE.SHIBOR3M AS SHIBOR3M, RESOURCE.SHIBOR6M AS SHIBOR6M, " \
@@ -319,7 +319,7 @@ class  DataCenterResourceAction(object):
     def lrp_resource(self):
         session = Session('master')
         logger.info('一年期贷款利率查询...!')
-        SQL ="SELECT  RESOURCE.LRPIY AS  LRPIY , RESOURCE.CURRENTTIME AS CURRENTTIME " \
+        SQL ="SELECT  RESOURCE.LRPIY AS  LRPIY , SUBSTRING(RESOURCE.CURRENTTIME,1,10) AS CURRENTTIME " \
              "FROM  DATACENTER_LPR_RESOURCE_TABLE AS RESOURCE"
         result = session.select_result(SQL)
         return result
@@ -348,7 +348,7 @@ class  DataCenterResourceAction(object):
     def socialpower_resource(self):
         session = Session('master')
         logger.info('社会用电量查询..!')
-        SQL = " SELECT RESOURCE.CURRENTTIME AS CURRENTTIME, " \
+        SQL = " SELECT SUBSTRING(RESOURCE.CURRENTTIME,1,10) AS CURRENTTIME, " \
               " RESOURCE.SOCIALPOWER AS SOCIALPOWER, " \
               " RESOURCE.CHANGERATIO AS CHANGERATIO " \
               " FROM " \
@@ -412,7 +412,7 @@ class  DataCenterResourceAction(object):
     def dollarindex_source(self):
         session = Session('master')
         SQL = ' SELECT RESOURCE.NEWSTOCKPRICE AS NEWSTOCKPRICE,' \
-              ' RESOURCE.OPENTIME AS OPENTIME ' \
+              ' SUBSTRING(RESOURCE.OPENTIME,1,10) AS OPENTIME ' \
               ' FROM DATACENTER_DOLLARINDEX_RESOURCE_TABLE RESOURCE' \
               ' ORDER BY RESOURCE.OPENTIME DESC LIMIT 0,25'
         result = session.select_result(SQL)
