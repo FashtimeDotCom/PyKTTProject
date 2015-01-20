@@ -32,7 +32,6 @@ class  DataCenterResourceAction(object):
               " FROM " \
               " DATACENTER_TRADEACTIVITY_RESOURCE_TABLE DATACENTER " \
               " WHERE 1 = 1 ORDER BY DATACENTER.STARTDATE DESC LIMIT 0,20"
-        print(sql)
         resources = session.select_result(sql)
         return resources
 
