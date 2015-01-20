@@ -8,9 +8,6 @@ logger = Log().getLog()
 #财经评论服务层#
 class  CommentsResourceAction(object):
 
-
-
-
     #获取当天的财经评论接口--查询当天股票评论#
     @Router.route(url = r"comments/dailystock", method = Router._GET|Router._POST)
     def daily_stock_comments_action(self,req):
