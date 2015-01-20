@@ -11,3 +11,11 @@ class  DailyBlogResourceAction(object):
     @Router.route(url = r"dailyblog/byresourcetype", method = Router._GET|Router._POST)
     def byresourcetype_action(self,req):
         print ''
+
+
+    def byresourcetype_resource(self):
+        session = Session('master')
+        logger.info('数据中心交易情绪查询查询...！')
+        SQL = ""
+        resources = session.select_result(SQL)
+        return resources
