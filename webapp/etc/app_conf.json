@@ -7,9 +7,9 @@
     },
     "mysql":{
         "master":{
-            "host":"localhost",
-            "user":"rowland",
-            "passwd":"123",
+            "host":"216.189.56.159",
+            "user":"wusezhang",
+            "passwd":"zjj07174559065",
             "db":"ktproject",
             "charset":"utf8"
         }
