@@ -46,21 +46,21 @@ class  DailyBlogResourceAction(object):
 
     def byresourcetype_resource(self,bzfl,start,limit):
         session = Session('master')
-        logger.info('查询财经作者列表信息...！')
         SQL = " SELECT A.BZ_NAME AS BZNAME, A.BZ_INTRODUCE AS BZINTRODUCE, A.BZ_FL AS BZFL," \
               " A.SRC_NAME AS SRCNAME, A.ID AS ID, A.CREATEDATE AS CREATEDATE, " \
               " A.POPULATION_FLAG /(SELECT MAX(RESOURCE.POPULATION_FLAG) FROM" \
               " DAILYBLOG_AUTHOR_RESOURCE_TABLE RESOURCE)* 100 AS POPULATION" \
               " FROM DAILYBLOG_AUTHOR_RESOURCE_TABLE A WHERE 1 = 1" \
               " AND A.BZ_FL=%s LIMIT %s,%s"%(bzfl,start,limit)
+        logger.info('查询财经作者列表信息...！'+SQL)
         resources = session.select_result(SQL)
         return resources
 
     def byresourcetype_count(self,bzfl,start,limit):
         session = Session('master')
-        logger.info('查询财经作者列表信息...！')
         SQL = " SELECT COUNT(ID) " \
               " FROM DAILYBLOG_AUTHOR_RESOURCE_TABLE A WHERE 1 = 1" \
               " AND A.BZ_FL=%s LIMIT %s,%s"%(bzfl,start,limit)
+        logger.info('查询财经作者列表信息...！'+SQL)
         resources = session.select_resultone(SQL)
         return resources
