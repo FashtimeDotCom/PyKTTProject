@@ -55,6 +55,7 @@ class Session(object):
     #通用Mysql查询#
     def select_result(self,sql):
         conn = self.con
+        result = None
         cursor = conn.cursor(cursorclass = MySQLdb.cursors.DictCursor)
         try:
             cursor.execute(sql)
@@ -69,6 +70,7 @@ class Session(object):
     #通用查询单一结果#
     def select_resultone(self,sql):
         conn = self.con
+        result = None
         cursor = conn.cursor(cursorclass = MySQLdb.cursors.DictCursor)
         try:
             cursor.execute(sql)
