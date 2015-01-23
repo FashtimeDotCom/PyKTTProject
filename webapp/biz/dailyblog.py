@@ -22,9 +22,7 @@ class  DailyBlogResourceAction(object):
     def byresourcetype_resource(self,bzfl,start,limit):
         session = Session('master')
         SQL = " SELECT A.BZ_NAME AS bzname, A.BZ_INTRODUCE AS bzintroduce, A.BZ_FL AS bzfl," \
-              " A.SRC_NAME AS srcname, A.ID AS id, A.CREATEDATE AS createdate, " \
-              " A.POPULATION_FLAG /(SELECT MAX(RESOURCE.POPULATION_FLAG) FROM" \
-              " DAILYBLOG_AUTHOR_RESOURCE_TABLE RESOURCE)* 100 AS population" \
+              " A.SRC_NAME AS srcname, A.ID AS id " \
               " FROM DAILYBLOG_AUTHOR_RESOURCE_TABLE A WHERE 1 = 1" \
               " AND A.BZ_FL=%s LIMIT %s,%s"%(bzfl,start,limit)
         logger.info('查询财经作者列表信息...！'+SQL)
