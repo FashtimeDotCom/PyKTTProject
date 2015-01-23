@@ -59,7 +59,7 @@ class Session(object):
         try:
             cursor.execute(sql)
             result = cursor.fetchall()
-        except conn.Error,e:
+        except Exception,e:
             logger.info("Mysql Error %d: %s" % (e.args[0], e.args[1]))
         finally:
             conn.close()
@@ -73,7 +73,7 @@ class Session(object):
         try:
             cursor.execute(sql)
             result = cursor.fetchone()
-        except conn.Error,e:
+        except Exception,e:
             logger.info("Mysql Error %d: %s" % (e.args[0], e.args[1]))
         finally:
             conn.close()
