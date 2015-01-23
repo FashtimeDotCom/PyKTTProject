@@ -15,7 +15,9 @@ class  DailyBlogResourceAction(object):
         bzfl =req.json_args.get("bzfl")
         data = self.byresourcetype_resource(bzfl,start,limit)
         count = self.byresourcetype_count(bzfl)
-        return req.ok({'data':data,'count':count['COUNTS']})
+        logger.info(count['COUNTS'])
+        currentdata = {'data':data,'count':count['COUNTS']}
+        return req.ok(currentdata)
 
     def byresourcetype_resource(self,bzfl,start,limit):
         session = Session('master')
