@@ -9,14 +9,15 @@ redis_pools = {}
 mysql_pool = {}
 logger = Log().getLog()
 
-def get_redis(dbid):
-    conf = confs.redis[dbid]
-    pool = redis_pools.get(dbid)
-    if not pool:
-        conf.setdefault('max_connections', 8)
-        pool = redis.ConnectionPool(**conf)
-        redis_pools[dbid] = pool
-    return redis.Redis(connection_pool=pool)
+##
+#def get_redis(dbid):
+#    conf = confs.redis[dbid]
+#    pool = redis_pools.get(dbid)
+#    if not pool:
+#        conf.setdefault('max_connections', 8)
+#        pool = redis.ConnectionPool(**conf)
+#        redis_pools[dbid] = pool
+#    return redis.Redis(connection_pool=pool)
 
 
 def get_mysql(dbid):

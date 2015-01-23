@@ -2,15 +2,14 @@
 
 from util.route import Router
 from util.cache import MemCache
-import db_util
 
 class HelloTest(object):
     
     @Router.route(url = r"hello/([a-z]+)", method = Router._GET|Router._POST)
     def test(self,req,who):
         #http://localhost:8888/hello/billy
-        r = db_util.get_redis('main')
-        return "Hi," + who + r.get('foo')
+        #r = db_util.get_redis('main')
+        return "Hi,"
         
     @Router.route(url = r"greetings/([a-z]+)", method = Router._GET)
     def test2(self,req,who):
