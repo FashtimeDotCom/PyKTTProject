@@ -14,6 +14,7 @@ class  DailyBlogResourceAction(object):
         limit=req.json_args.get("limit")
         bzfl =req.json_args.get("bzfl")
         currentresource = self.byresourcetype_resource(bzfl,start,limit)
+        count = self.byresourcetype_count(bzfl,start,limit)
         currentdata = []
         for current_diect in currentresource:
             bzname = None
@@ -41,6 +42,7 @@ class  DailyBlogResourceAction(object):
             currentdata.append({'bzname':bzname,'bzintroduce':bzintroduce,
                                 'bzfl':bzfl,'srcname':srcname,'id':id,
                                 'createdate':createdate,'population':population})
+        return req.ok({'data':currentdata,'count':count})
 
     def byresourcetype_resource(self,bzfl,start,limit):
         session = Session('master')
@@ -52,4 +54,13 @@ class  DailyBlogResourceAction(object):
               " FROM DAILYBLOG_AUTHOR_RESOURCE_TABLE A WHERE 1 = 1" \
               " AND A.BZ_FL=%s LIMIT %s,%s"%(bzfl,start,limit)
         resources = session.select_result(SQL)
+        return resources
+
+    def byresourcetype_count(self,bzfl,start,limit):
+        session = Session('master')
+        logger.info('查询财经作者列表信息...！')
+        SQL = " SELECT COUNT(ID) " \
+              " FROM DAILYBLOG_AUTHOR_RESOURCE_TABLE A WHERE 1 = 1" \
+              " AND A.BZ_FL=%s LIMIT %s,%s"%(bzfl,start,limit)
+        resources = session.select_resultone(SQL)
         return resources
