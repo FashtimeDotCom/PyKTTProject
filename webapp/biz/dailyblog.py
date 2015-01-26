@@ -90,7 +90,7 @@ class  DailyBlogResourceAction(object):
         SQL ="SELECT CJXJ_DETAIL.TITLE AS title , CJXJ.SRC_NAME AS imageUrl ," \
              " SUBSTRING(CJXJ_DETAIL.PUBDATE,1,16) AS pubDate , CJXJ_DETAIL.LINKURL AS linkUrl," \
              " CJXJ.ID AS id FROM" \
-             " DAILYBLOG_RESOURCE_DETAIL_TABLE CJXJ_DETAIL , CJXJ_RESOURCE_TABLE CJXJ" \
+             " DAILYBLOG_RESOURCE_DETAIL_TABLE CJXJ_DETAIL , DAILYBLOG_AUTHOR_RESOURCE_TABLE CJXJ" \
              " WHERE 1=1" \
              " AND  CJXJ.ID = CJXJ_DETAIL.ID" \
              " AND  CJXJ.BZ_FL = 0" \
