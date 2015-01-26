@@ -22,7 +22,6 @@ class  DailyBlogResourceAction(object):
 
     def byresourcetype_resource(self,bzfl,start,limit,bzname):
         session = Session('master')
-        SQL =None
         SQL = " SELECT A.BZ_NAME AS bzname, A.BZ_INTRODUCE AS bzintroduce, A.BZ_FL AS bzfl," \
               " A.SRC_NAME AS srcname, A.ID AS id " \
               " FROM DAILYBLOG_AUTHOR_RESOURCE_TABLE A WHERE 1 = 1" \
