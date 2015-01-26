@@ -16,7 +16,6 @@ class  DailyBlogResourceAction(object):
         bzname =req.json_args.get("bzname").strip()
         data = self.byresourcetype_resource(bzfl,start,limit,bzname)
         count = self.byresourcetype_count(bzfl,bzname)
-        logger.info(count['COUNTS'])
         currentdata = {'data':data,'count':count['COUNTS']}
         return req.ok(currentdata)
 
@@ -41,5 +40,37 @@ class  DailyBlogResourceAction(object):
         if(''!=bzname):
            SQL +="AND A.BZ_NAME LIKE '%"+bzname+"%'"
         logger.info('查询财经作者列表信息...！'+SQL)
+        resources = session.select_resultone(SQL)
+        return resources
+
+    #通过作者ID查找当前作者所有文章的明细记录.
+    @Router.route(url = r"dailyblog/authorarticles", method = Router._GET|Router._POST)
+    def authorarticles_detailbyid_action(self,req):
+        start=req.json_args.get("start")
+        limit=req.json_args.get("limit")
+        id = req.json_args.get("id")
+        data = self.authorarticles_detailbyid_resource(id,start,limit)
+        count =self.authorarticles_detailbyid_count(id)
+        currentdata = {'data':data,'count':count['COUNTS']}
+        return req.ok(currentdata)
+
+    def authorarticles_detailbyid_resource(self,id,start,limit):
+        session = Session('master')
+        SQL =" SELECT CJXJ_DETAIL.TITLE AS title , CJXJ.SRC_NAME AS imageUrl ," \
+             " SUBSTRING(CJXJ_DETAIL.PUBDATE,1,16)  AS pubDate , CJXJ_DETAIL.LINKURL AS linkUrl," \
+             " CJXJ.ID AS id FROM" \
+             " DAILYBLOG_RESOURCE_DETAIL_TABLE CJXJ_DETAIL , DAILYBLOG_AUTHOR_RESOURCE_TABLE CJXJ" \
+             " WHERE 1=1 AND CJXJ_DETAIL.ID = %s AND  CJXJ.ID = CJXJ_DETAIL.ID" \
+             " ORDER BY CJXJ_DETAIL.PUBDATE DESC LIMIT %s,%s"%(id,start,limit)
+        logger.info('查找当前作者所有文章的明细记录...！'+SQL)
+        resources = session.select_result(SQL)
+        return resources
+
+    def authorarticles_detailbyid_count(self,id):
+        session = Session('master')
+        SQL = " SELECT COUNT(ID) AS COUNTS " \
+              " FROM DAILYBLOG_RESOURCE_DETAIL_TABLE CJXJ_DETAIL" \
+              " WHERE 1=1 AND CJXJ_DETAIL.ID = %s"%(id)
+        logger.info('查找当前作者所有文章的明细记录总条数...！'+SQL)
         resources = session.select_resultone(SQL)
         return resources
