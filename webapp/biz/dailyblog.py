@@ -27,7 +27,7 @@ class  DailyBlogResourceAction(object):
               " FROM DAILYBLOG_AUTHOR_RESOURCE_TABLE A WHERE 1 = 1" \
               " AND A.BZ_FL=%s "%(bzfl)
         if(''!=bzname):
-           SQL +="AND A.BZ_NAME LIKE %"+bzname+"%"
+           SQL +="AND A.BZ_NAME LIKE '%"+bzname+"%'"
         SQL += " ORDER BY  POPULATION_FLAG  DESC  LIMIT %s,%s"%(start,limit)
         logger.info('查询财经作者列表信息...！'+SQL)
         resources = session.select_result(SQL)
@@ -39,7 +39,7 @@ class  DailyBlogResourceAction(object):
               " FROM DAILYBLOG_AUTHOR_RESOURCE_TABLE A WHERE 1 = 1" \
               " AND A.BZ_FL=%s "%(bzfl)
         if(''!=bzname):
-           SQL +="AND A.BZ_NAME LIKE %"+bzname+"%"
+           SQL +="AND A.BZ_NAME LIKE '%"+bzname+"%'"
         logger.info('查询财经作者列表信息...！'+SQL)
         resources = session.select_resultone(SQL)
         return resources
