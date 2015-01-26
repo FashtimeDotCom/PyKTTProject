@@ -74,3 +74,37 @@ class  DailyBlogResourceAction(object):
         logger.info('查找当前作者所有文章的明细记录总条数...！'+SQL)
         resources = session.select_resultone(SQL)
         return resources
+
+    #国内股票经济评论家当天的所有文章的明细记录.
+    @Router.route(url = r"dailyblog/dailyarticles", method = Router._GET|Router._POST)
+    def dailyarticles_finance_action(self,req):
+        start=req.json_args.get("start")
+        limit=req.json_args.get("limit")
+        data = self.dailyarticles_finance_resource(start,limit)
+        count =self.dailyarticles_finance_count()
+        currentdata = {'data':data,'count':count['COUNTS']}
+        return req.ok(currentdata)
+
+    def dailyarticles_finance_resource(self,start,limit):
+        session = Session('master')
+        SQL ="SELECT CJXJ_DETAIL.TITLE AS title , CJXJ.SRC_NAME AS imageUrl ," \
+             " SUBSTRING(CJXJ_DETAIL.PUBDATE,1,16) AS pubDate , CJXJ_DETAIL.LINKURL AS linkUrl," \
+             " CJXJ.ID AS id FROM" \
+             " DAILYBLOG_RESOURCE_DETAIL_TABLE CJXJ_DETAIL , CJXJ_RESOURCE_TABLE CJXJ" \
+             " WHERE 1=1" \
+             " AND  CJXJ.ID = CJXJ_DETAIL.ID" \
+             " AND  CJXJ.BZ_FL = 0" \
+             " AND  DATE(CJXJ_DETAIL.PUBDATE) = CURDATE()" \
+             " ORDER BY CJXJ_DETAIL.PUBDATE DESC" \
+             " LIMIT %s,%s"%(start,limit)
+        logger.info('国内股票经济评论家当天的所有文章明细记录...！'+SQL)
+        resources = session.select_result(SQL)
+        return resources
+
+    def dailyarticles_finance_count(self):
+        session = Session('master')
+        SQL = "  SELECT  COUNT(ID) AS COUNTS FROM  DAILYBLOG_RESOURCE_DETAIL_TABLE CJXJ_DETAIL" \
+              "  WHERE DATE(CJXJ_DETAIL.PUBDATE) = CURDATE()"
+        logger.info('查找当前作者所有文章的明细记录总条数...！'+SQL)
+        resources = session.select_resultone(SQL)
+        return resources
