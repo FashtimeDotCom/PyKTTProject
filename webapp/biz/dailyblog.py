@@ -28,7 +28,7 @@ class  DailyBlogResourceAction(object):
               " AND A.BZ_FL=%s "%(bzfl)
         if(''!=bzname):
            SQL +="AND A.BZ_NAME LIKE %"+bzname+"%"
-        SQL += " ORDER BY  POPULATION DESC  LIMIT %s,%s"%(start,limit)
+        SQL += " ORDER BY  POPULATION_FLAG  DESC  LIMIT %s,%s"%(start,limit)
         logger.info('查询财经作者列表信息...！'+SQL)
         resources = session.select_result(SQL)
         return resources
