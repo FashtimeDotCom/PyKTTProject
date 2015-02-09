@@ -40,7 +40,7 @@ class  CommentsResourceAction(object):
     #查询当天股票评论总条数查询接口#
     def daily_stock_comments_count(self):
         session = Session('master')
-        SQL =" SELECT COUNT(*) FROM  COMMENTS_STOCK_RESOURCE_TABLE  COMMENTSSTOCK " \
+        SQL =" SELECT COUNT(*) AS COUNTS FROM  COMMENTS_STOCK_RESOURCE_TABLE  COMMENTSSTOCK " \
              " WHERE 1=1 AND   COMMENTSSTOCK.DESCRIPTCONTEXT !='' "
         result = session.select_resultone(SQL)
         return result
@@ -79,7 +79,7 @@ class  CommentsResourceAction(object):
     #查询当天财经评论总条数查询接口#
     def daily_finance_comments_count(self):
         session = Session('master')
-        SQL =" SELECT  COUNT(*) " \
+        SQL =" SELECT  COUNT(*) AS COUNTS" \
              " FROM  COMMENTS_FINANCE_RESOURCE_TABLE  COMMENTSFINANCE " \
              " WHERE 1=1" \
              " AND COMMENTSFINANCE.DESCRIPTCONTEXT !=''" \
@@ -166,7 +166,7 @@ class  CommentsResourceAction(object):
     #查询当天贵金属评论总条数查询接口#
     def today_metal_comments_count(self):
         session = Session('master')
-        SQL =" SELECT  COUNT(*)  FROM" \
+        SQL =" SELECT  COUNT(*) AS  COUNTS FROM" \
              " COMMENTS_METAL_RESOURCE_TABLE COMMENTSMETAL" \
              " WHERE 1 = 1" \
              " AND COMMENTSMETAL.COMMENTFLAG = 'METAL'" \
