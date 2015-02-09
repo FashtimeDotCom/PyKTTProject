@@ -122,7 +122,7 @@ class  CommentsResourceAction(object):
     #查询当天外汇评论总条数查询接口#
     def today_forex_comments_count(self):
         session = Session('master')
-        SQL =" SELECT COUNT(*) AS COUNT " \
+        SQL =" SELECT COUNT(*) AS COUNTS " \
              " FROM COMMENTS_NEWS_RESOURCE_TABLE COMMENTSNEWS" \
              " WHERE 1 = 1" \
              " AND COMMENTSNEWS.COMMENTFLAG = 'FOREX'" \
