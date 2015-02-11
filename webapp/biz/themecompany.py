@@ -19,9 +19,9 @@ class ThemeCompanyResourceAction():
 
     def daily_news_themes_data(self,start,limit):
         session = Session('master')
-        SQL = " SELECT THEMENEWS.KEYID,THEMENEWS.LINKURL," \
-              " SUBSTRING(THEMENEWS.PUBDATE,1,16) AS PUBDATE," \
-              " THEMENEWS.TITLE FROM" \
+        SQL = " SELECT THEMENEWS.KEYID ,THEMENEWS.LINKURL AS linkUrl," \
+              " SUBSTRING(THEMENEWS.PUBDATE,1,16) AS pubDate," \
+              " THEMENEWS.TITLE AS title  FROM" \
               " STOCK_POOL_THEME_NEWS_TABLE THEMENEWS" \
               " WHERE 1 = 1" \
               " LIMIT %s,%s"%(start,limit)
@@ -51,9 +51,9 @@ class ThemeCompanyResourceAction():
     def daily_news_company_data(self,start,limit):
         session = Session('master')
         SQL = " SELECT MAX(COMPANYNEWS.KEYID) AS KEYID," \
-              " MAX(COMPANYNEWS.LINKURL) AS LINKURL," \
-              " MAX(SUBSTRING(COMPANYNEWS.PUBDATE, 1, 16)) AS PUBDATE," \
-              " MAX(SUBSTRING(COMPANYNEWS.TITLE, 1, 35)) AS TITLE" \
+              " MAX(COMPANYNEWS.LINKURL) AS linkUrl," \
+              " MAX(SUBSTRING(COMPANYNEWS.PUBDATE, 1, 16)) AS pubDate," \
+              " MAX(SUBSTRING(COMPANYNEWS.TITLE, 1, 35)) AS title" \
               " FROM" \
               " STOCK_POOL_COMPANY_NEWS_TABLE COMPANYNEWS" \
               " WHERE 1 = 1" \
