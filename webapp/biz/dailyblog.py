@@ -128,7 +128,7 @@ class  DailyBlogResourceAction(object):
              " HSHY_RESOURCE.DESCRIPTCONTEXT AS descriptContext , HSHY_RESOURCE.IMAGEURL AS imageUrl," \
              " HSHY_RESOURCE.ID AS id " \
              " FROM" \
-             " HSHY_RESOURCE_DETAIL_TABLE HSHY_RESOURCE , CJXJ_RESOURCE_TABLE CJXJ" \
+             " DAILYBLOG_FOREXRESOURCE_DETAIL_TABLE HSHY_RESOURCE , DAILYBLOG_AUTHOR_RESOURCE_TABLE CJXJ" \
              " WHERE 1=1" \
              " AND HSHY_RESOURCE.ID = %s " \
              " AND  CJXJ.ID = HSHY_RESOURCE.ID" \
@@ -140,7 +140,7 @@ class  DailyBlogResourceAction(object):
     def authorforexarticles_detailbyid_count(self,id):
         session = Session('master')
         SQL = " SELECT COUNT(ID) AS COUNTS  FROM" \
-              " HSHY_RESOURCE_DETAIL_TABLE HSHY_RESOURCE WHERE 1=1" \
+              " DAILYBLOG_FOREXRESOURCE_DETAIL_TABLE HSHY_RESOURCE WHERE 1=1" \
               " AND HSHY_RESOURCE.ID =%s "%(id)
         logger.info('通过ID查找当前外汇作者所有文章的明细总条数...！'+SQL)
         resources = session.select_resultone(SQL)
