@@ -108,3 +108,44 @@ class  DailyBlogResourceAction(object):
         logger.info('查找当前作者所有文章的明细记录总条数...！'+SQL)
         resources = session.select_resultone(SQL)
         return resources
+
+
+    #通过作者ID查找当前作者所有文章的明细记录.
+    @Router.route(url = r"dailyblog/forexarticlesbyid", method = Router._GET|Router._POST)
+    def authorforexarticles_detailbyid_action(self,req):
+        start=req.json_args.get("start")
+        limit=req.json_args.get("limit")
+        id = req.json_args.get("id")
+        data = self.authorforexarticles_detailbyid_resource(id,start,limit)
+        count =self.authorforexarticles_detailbyid_count(id)
+        currentdata = {'data':data,'count':count['COUNTS']}
+        return req.ok(currentdata)
+
+    def authorforexarticles_detailbyid_resource(self,id,start,limit):
+        session = Session('master')
+        SQL ="SELECT HSHY_RESOURCE.TITLE AS title ," \
+             " HSHY_RESOURCE.PUBDATE AS pubDate , HSHY_RESOURCE.LINKURL AS linkUrl," \
+             " HSHY_RESOURCE.DESCRIPTCONTEXT AS descriptContext , HSHY_RESOURCE.IMAGEURL AS imageUrl," \
+             " HSHY_RESOURCE.ID AS id " \
+             " FROM" \
+             " HSHY_RESOURCE_DETAIL_TABLE HSHY_RESOURCE , CJXJ_RESOURCE_TABLE CJXJ" \
+             " WHERE 1=1" \
+             " AND HSHY_RESOURCE.ID = %s " \
+             " AND  CJXJ.ID = HSHY_RESOURCE.ID" \
+             " ORDER BY HSHY_RESOURCE.PUBDATE DESC  LIMIT %s,%s "%(id,start,limit)
+        logger.info('通过ID查找当前外汇作者所有文章的明细记录...！'+SQL)
+        resources = session.select_result(SQL)
+        return resources
+
+    def authorforexarticles_detailbyid_count(self,id):
+        session = Session('master')
+        SQL = " SELECT COUNT(ID) AS COUNTS  FROM" \
+              " HSHY_RESOURCE_DETAIL_TABLE HSHY_RESOURCE WHERE 1=1" \
+              " AND HSHY_RESOURCE.ID =%s "%(id)
+        logger.info('通过ID查找当前外汇作者所有文章的明细总条数...！'+SQL)
+        resources = session.select_resultone(SQL)
+        return resources
+
+
+
+
