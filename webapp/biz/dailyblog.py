@@ -110,7 +110,7 @@ class  DailyBlogResourceAction(object):
         return resources
 
 
-    #通过作者ID查找当前作者所有文章的明细记录.
+    #通过作者ID查找当前外汇评论家作者所有文章的明细记录.
     @Router.route(url = r"dailyblog/forexarticlesbyid", method = Router._GET|Router._POST)
     def authorforexarticles_detailbyid_action(self,req):
         start=req.json_args.get("start")
