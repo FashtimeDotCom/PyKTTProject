@@ -124,7 +124,7 @@ class  DailyBlogResourceAction(object):
     def authorforexarticles_detailbyid_resource(self,id,start,limit):
         session = Session('master')
         SQL ="SELECT HSHY_RESOURCE.TITLE AS title ," \
-             " HSHY_RESOURCE.PUBDATE AS pubDate , HSHY_RESOURCE.LINKURL AS linkUrl," \
+             " SUBSTRING(HSHY_RESOURCE.PUBDATE,1,16) AS pubDate , HSHY_RESOURCE.LINKURL AS linkUrl," \
              " HSHY_RESOURCE.DESCRIPTCONTEXT AS descriptContext , HSHY_RESOURCE.IMAGEURL AS imageUrl," \
              " HSHY_RESOURCE.ID AS id " \
              " FROM" \
